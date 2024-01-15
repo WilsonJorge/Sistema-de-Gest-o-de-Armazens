@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="392" height="85" viewBox="0 0 392 85">
+  <defs>
+    <clipPath id="clip-logo_eventos">
+      <rect width="392" height="85"/>
+    </clipPath>
+  </defs>
+  <g id="logo_eventos" clip-path="url(#clip-logo_eventos)">
+    <rect width="392" height="85" fill="rgba(255,255,255,0.02)"/>
+    <text id="EVENTO_DO" data-name="EVENTO DO" transform="translate(7 59)" fill="#040404" font-size="42" font-family="Verdana"><tspan x="0" y="0">EVENTO DO</tspan></text>
+    <rect id="Retângulo_1" data-name="Retângulo 1" width="100" height="63" transform="translate(271 11)" fill="#f2a143"/>
+    <text id="DIA" transform="translate(282 59)" fill="#f5f5f5" font-size="42" font-family="Verdana"><tspan x="0" y="0">DIA</tspan></text>
+  </g>
+</svg>
