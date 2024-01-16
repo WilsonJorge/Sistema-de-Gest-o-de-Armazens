@@ -14,114 +14,88 @@
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Verdana:100,300,400,700,900" rel="stylesheet">
     
- <!-- Bootstrap CSS
+  <!-- Bootstrap CSS
 		============================================ -->
    
-        <link href="\css\bootstrap-4.6.1\dist\css\bootstrap.css" type="text/css" rel="stylesheet">
-        <!-- <link href="\css\bootstrap-4.6.1\dist\css\bootstrap.min.css" type="text/css" rel="stylesheet">   -->
+    <link href="./dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
+    <link href="./dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
+    <link href="./dist-assets/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="dist-assets/select2/css/select22.min.css" />
+    <link rel="stylesheet" href="./dist-assets/css/plugins/sweetalert2.min.css">
+    <link rel="stylesheet" href="dist-assets/select2-bootstrap4-theme/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="dist-assets/css/toastr.min.css">
 
+
+    <!-- preloader css-->
+    <link rel="stylesheet" href="dist-assets/css/preloader.css" />
+    <!-- favicon -->
+    <link href="./dist-assets/images/logo_up.png" rel="shortcut icon">
+    <link href="dist-assets/css/flatpickr.min.css" rel="stylesheet">
          
  <!-- Icons fontawesome
 		============================================ -->
 
-        <link rel="stylesheet" href="\css\icons\font-awesome\css\font-awesome.css">
-        <link rel="stylesheet" href="\css\icons\font-awesome\css\font-awesome.min.css">
+    <link rel="stylesheet" href="\css\icons\font-awesome\css\font-awesome.css">
+    <link rel="stylesheet" href="\css\icons\font-awesome\css\font-awesome.min.css">
+
+<!--   Javascript generico-->
 
 
+    <script src="./dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+    <script src="./dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="./dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="./dist-assets/js/scripts/script.min.js"></script>
+    <script src="dist-assets/js/scripts/script_2.min.js"></script>
+    <script src="./dist-assets/js/scripts/sidebar.large.script.min.js"></script>
+    <script src="dist-assets/js/flatpickr.js"></script>
+    <script src="./js/imask.js"></script>
+
+
+    <!-- Script geral -->
+    <script src="./js/scripts.js"></script>
+    <!-- <script src="dist-assets/js/scripts/sweetalert2@11.js"></script>  -->
+    <script src="dist-assets/select2/js/lodash.min.js"></script>
+    <script src="dist-assets/select2/js/select22.min.js"></script>
+    <script src="dist-assets/js/toastr.min.js"></script>
+
+
+    <!-- VentanaCentrada.js -->
+    <script src="./reports/pdf/js/VentanaCentrada.js"></script>
+    <!-- pdf.js --> 
+    <script src="./reports/pdf/js/pdf.js"></script>
+    <script src="./js/anexo_script.js"></script>
+    <script src="dist-assets/js/jquery.inputmask.min.js"></script>
+    <script src="./js/api_queries.js"></script>
+    <script src="./js/pagination.js"></script>
+
+
+    <script src="dist-assets/js/plugins/sweetalert2.min.js"></script> 
+    <script src="dist-assets/js/scripts/sweetalert.script.min.js"></script>
 
         
  <!-- Bootstrap js E CSS normal
 		============================================ --> 
-       <!-- <script src="\js\bootstrap-4.6.1\dist\js\bootstrap.min.js"></script>  -->
-
-        <script src="\js\bootstrap-4.6.1\dist\js\bootstrap.js"></script>
-        
-        <link rel="stylesheet" href="/css/style.css">
-        <script src="/js/scripts.js"></script>
-
-
 
         <title>@yield('title')</title>
 
        
     </head>
 
-    <body>
-
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-
-        
-        <div class="collapse navbar-collapse" id="navbar">
-          
-          <div class="col-md-2">
-            <a href="/" class="navbar-brand">
-              <img src="/img/logo_eventos.svg" alt="logo_evento_do_dia">
-              <!-- <span style="color: #F2A340; font-weight: bold; font-family: Verdana;">Eventos</span><span style="color: #2d95d6; font-weight: bold; font-family: Verdana;"> do Dia</span> -->
-            </a>
-          </div>
-            <ul class="navbar-nav">
-
-            <li class="nav-item">
-                <a href="/" class="nav-link"><i class="fa fa-home"></i>Home</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="/eventos" class="nav-link"><i class="fa fa-thumb-tack"></i> Eventos</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="/events/create" class="nav-link"><i class="fa fa-calendar-o"></i> Criar eventos</a>
-              </li>
-              
-              @auth
-              <li class="nav-item">
-                <a href="/dashboard" class="nav-link"><i class="fa fa-calendar"></i> Meus Eventos</a>
-              </li>
-              <li class="nav-item">
-                 <form action="/logout" method="post">
-                @csrf
-                <a href="/logout"
-                 class="nav-link"
-                 onclick="event.preventDefault();
-                 this.closest('form').submit();">
-                 <i class="fa fa-sign-out"></i>
-                 Sair
-                </a>
-                </form>
-              </li>
-          
-              @endauth
-
-              @guest
-                <li class="nav-item">
-                <a href="/login" class="nav-link"><i class="fa fa-sign-in"></i> Entrar</a>
-              </li>
-              
-              <li class="nav-item">
-                <a href="/register" class="nav-link"><i class="fa fa-user"></i> Registar-se</a>
-              </li>   
-              @endguest
-
-
-            </ul>
-        </div>
-        </nav>
-    </header>
-   
-    <main>
-    <div class="container-fluid">
-          @if(session('msg'))
-          <p class="msg">{{ session('msg')}}</p>          
-          @endif
+  <body class="text-left">
+      <!-- Start preloader -->
+      <div class="loader-bg">
+          <div class="loader-p"></div>
+      </div>  
+      
           @yield('content')
-    </div>
-    </main>
-
-    <footer>
-        <p>&copy; Todos os direitos reservados a Eventos Do Dia- 2022</p>
-    </footer>
 
 
-    </body>
+
+          @yield('scripts')
+
+
+
+    
+  </body>
+
 </html>
