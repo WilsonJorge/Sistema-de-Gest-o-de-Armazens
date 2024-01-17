@@ -24,11 +24,8 @@
                 <div class="col-md-12">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <!-- <h1 class="font-weight-bold">Multas</h1><br> -->
                             <div class="row">
                                 <div class="col-md-12 text-right ">
-                                    <!-- <button  href="rg_aluno.php" class="btn btn-success btn-lg" type="button" id="registar">Registar</button> -->
-                                    <!-- <a href="rg_funcionario.php" class="btn btn-success btn-xs">Novo funcionario</a> -->
                                     <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button>
                                 </div>
                             </div>

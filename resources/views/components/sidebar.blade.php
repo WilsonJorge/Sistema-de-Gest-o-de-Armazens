@@ -24,7 +24,7 @@
 <div class="main-header" >
     <div>
         <h1 class="" style="color: rgb(76, 175, 80); font-family: 'Unbounded' ; font-weight:600; font-size: 20px!important; padding: 12px 8px; align-items: center;"><span style="color: #e5ce02">SGEV_</span><span style="color: #3197ef">UP</span></h1>
-    <!-- <img src="./dist-assets/images/logo_up.png" width="10px" height="10px" alt=""> -->
+        {{-- <img src="{{ asset('dist-assets/images/logo_up.png')}} " width="10px" height="10px" alt=""> logo do side bar --}}
     </div>
     <div class="menu-toggle">
         <div></div>
@@ -41,7 +41,7 @@
         <!-- User avatar dropdown -->
         <div class="dropdown">
             <div class="user col align-self-end">
-                <img src="./dist-assets/images/user.png" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{ asset('dist-assets/images/user.png') }} " id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <div class="dropdown-header">
                         {{-- <i class="i-Lock-User mr-1"></i> <?=$_SESSION["nome"]?> --}}
