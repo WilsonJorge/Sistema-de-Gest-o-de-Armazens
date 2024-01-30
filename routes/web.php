@@ -25,3 +25,7 @@ Route::get('/funcionario', function () {
     return view('funcionarios.index');
 });
 
+Route::get('/404', function () {
+    return view('error.not-found');
+});
+
