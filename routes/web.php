@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProvinciasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,23 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('404', function () {
+    return view('errors.not-found');
+})->name('404');
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/funcionario', function () {
+Route::get('funcionario', function () {
     return view('funcionarios.index');
-});
+})->name('funcionario');
 
-Route::get('/404', function () {
-    return view('error.not-found');
-});
+// Route::get('/provincia', function () {
+//     return view('provincia.listagem_provincia');
+// })->name('provincia');
+
+Route::get('provincia', [ProvinciasController::class, 'index'])->name('list');
+Route::get('provincias', [ProvinciasController::class, 'list'])->name('listar');
+
 

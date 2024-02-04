@@ -1,6 +1,7 @@
-<?php
-@session_start();
-?>
+@php
+    session()->start();
+@endphp
+
 <style>
     .nav-item:hover {
         background-color: #3197ef;
@@ -70,7 +71,7 @@
             </li>
             
             <li class="nav-item" id="listagem_funcionarios_li">
-                <a class="nav-item-hold" href="./listagem_funcionarios.php" id="listagem_funcionarios_link">
+                <a class="nav-item-hold" href="{{Route::has('funcionario')?route('funcionario'):"404"}}" id="listagem_funcionarios_link">
                     <i class="nav-icon i-MaleFemale"></i>
                     <span class="nav-text" style="font-size: 14px;">Funcionarios</span>
                 </a>
@@ -124,26 +125,26 @@
     <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
         <ul class="childNav" data-parent="funcionario_group">
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="listagem_provincia.php" id="provincia_link">
+                <a class="nav-item-hold" href="{{Route::has('provincia')?route('provincia'):"404"}}" id="provincia_link">
                     <i class="nav-icon i-Map2"></i>
                     <span class="nav-text" style="font-size: 14px;">Provincia</span>
                 </a>
             </li>
 
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="listagem_distrito.php" id="escolas_link">
+                <a class="nav-item-hold" href="{{Route::has('distrito')?route('distrito'):"404"}}" id="distrito_link">
                     <i class="nav-icon i-Map-Marker"></i>
                     <span class="nav-text" style="font-size: 14px;">Distrito</span>
                 </a>
             </li>
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="listagem_departamento.php" id="escolas_link">
+                <a class="nav-item-hold" href="{{Route::has('departamento')?route('departamento'):"404"}}" id="escolas_link">
                     <i class="nav-icon i-Hotel"></i>
                     <span class="nav-text" style="font-size: 14px;">Departamento</span>
                 </a>
             </li>
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="listagem_departamento.php" id="escolas_link">
+                <a class="nav-item-hold" href="{{Route::has('vagas')?route('vagas'):"404"}}" id="escolas_link">
                     <i class="nav-icon i-Car-3"></i>
                     <span class="nav-text" style="font-size: 14px;">Vagas</span>
                 </a>
@@ -155,7 +156,7 @@
                 </a>
             </li>
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="listagem_departamento.php" id="escolas_link">
+                <a class="nav-item-hold" href="{{Route::has('utilizadores')?route('utilizadores'):"404"}}" id="escolas_link">
                     <i class="nav-icon i-Male"></i>
                     <span class="nav-text" style="font-size: 14px;">Utilizadores</span>
                 </a>
