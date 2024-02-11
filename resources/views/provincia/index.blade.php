@@ -7,6 +7,8 @@
 
 <div class="app-admin-wrap layout-sidebar-large">
     @include('components.sidebar')
+    @include('provincia.modal.addProvincia')
+
     <!-- =============== Left side End ================-->
     <div class="main-content-wrap sidenav-open d-flex flex-column">
 
@@ -27,10 +29,9 @@
                         <div class="card-body">
                             <!-- <h1 class="font-weight-bold">Multas</h1><br> -->
                             <div class="row">
-                                {{-- <div class="col-md-12 text-right ">
-                                    <!-- <button  href="rg_aluno.php" class="btn btn-success btn-lg" type="button" id="registar">Registar</button> -->
-                                    <a href="rg_distrito.php" class="btn btn-success btn-lg">Registar</a>
-                                </div> --}}
+                                <div class="col-md-12 text-right ">
+                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-provincia" id="btn_registar">Adiconar</button> 
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
@@ -105,6 +106,16 @@
             list("")
         })
     });
+
+
+//     $(document).on('click', "#btn_registar",function(){
+
+
+// alert("clickk")
+
+//     })
+
+
 
 
 
