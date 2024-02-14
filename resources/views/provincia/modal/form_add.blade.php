@@ -8,7 +8,7 @@
           </div>
           <div class="modal-body">
 
-          <form action="#"  id="form-equipamento" method="post" enctype="multipart/form-data">
+          <form action="#"  id="form-rg" method="post" enctype="multipart/form-data">
               <div class="row">    
                       
                       <div class="col-md-12 form-group">
@@ -19,14 +19,14 @@
                       
                   </div>
 
-          @csrf
+          {{-- @csrf --}}
           </form>
 
              
           </div>
           <div class="modal-footer">
               <button class="btn btn-danger" type="button" data-dismiss="modal">Fechar</button>
-              <button class="btn btn-success ml-2" id="registrar_equipamento" type="button">Registar</button>
+              <button class="btn btn-success ml-2" id="registrar_provincia" type="button">Registar</button>
           </div>
       </div>
   </div>

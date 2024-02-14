@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'Lista de Funcionarios')
+@section('title', 'Lista de Provincias')
 
 
 @section('content')
 
 <div class="app-admin-wrap layout-sidebar-large">
     @include('components.sidebar')
-    @include('provincia.modal.addProvincia')
+    @include('provincia.modal.form_add')
 
     <!-- =============== Left side End ================-->
     <div class="main-content-wrap sidenav-open d-flex flex-column">
@@ -30,7 +30,7 @@
                             <!-- <h1 class="font-weight-bold">Multas</h1><br> -->
                             <div class="row">
                                 <div class="col-md-12 text-right ">
-                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-provincia" id="btn_registar">Adiconar</button> 
+                                     <button  title="Adicionar nova provincia" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-provincia" id="btn_registar"><i class="fa fa-plus"></i>  </button> 
                                 </div>
                             </div>
                             <div class="row">
@@ -62,9 +62,9 @@
 
                                     </select>
                                 </div> --}}
-                                <div class="col-md-12 mb-3 text-right" style="text-align: right">
+                                {{-- <div class="col-md-12 mb-3 text-right" style="text-align: right">
                                     <button class="btn btn-secondary btn-lg search pesquisar">Pesquisar</button>
-                                </div>
+                                </div> --}}
                             </div>
                             <br><br>
 

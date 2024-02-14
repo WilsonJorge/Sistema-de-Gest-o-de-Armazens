@@ -31,4 +31,25 @@ class ProvinciasController extends Controller
     public function index(Request $request){
         return view('provincia.index');
     }
+
+    public function add(Request $request)
+    {
+
+        $json['success'] = false;
+        $json['id'] = null;
+
+        $data = $request->validate([
+            'descricao' => 'required',
+        ]);
+
+        $data['activo'] = 1;
+
+        if ($provincia = Provincia::create($data)) {
+            $json['success'] = true;
+            $json['nome']=$provincia->nome;
+        }
+
+        echo json_encode($json);
+        dd("finish");
+    }
 }

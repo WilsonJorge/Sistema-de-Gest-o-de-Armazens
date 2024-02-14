@@ -30,7 +30,19 @@
                     <th scope="row">{{ $cont++ }}</th>
                     <td>{{ $item->nome }}</td>
                     <td>{{ $item->created_at }}</td>
-                    <td>{{ $item->estado }}</td>
+                    <td> @php 
+                     if($item->estado == '1') : 
+                     @endphp
+                     <div class="badge text-bg-success">Activo</div>
+                     @php
+                     elseif($item->estado == '2'):                    
+                    @endphp
+                     <div class="badge text-bg-danger">Inactivo</div>
+                    @php
+                    endif
+                    @endphp
+                    
+                    </td>
                     <td> 
                         <button class="btn btn-primary"><i class="i-Eye"></i> </button>
                         <button class="btn btn-warning"><i class="i-Edit"></i> </button>

@@ -30,28 +30,28 @@ $(function() {
         }
     });
 
-    setInterval(function () {
-        $.ajax({
-            url: base_url_function()+'security/control.php',
-            data: {},
-            type: 'GET',
-            dataType: "json",
-            success: function(data) {
-                // alert(data)
-                if(data){
-                    // console.log("True")
-                    window.location=base_url_function()+'index.php'
-                }else{
-                    // console.log("False")
-                }
-            },
-            error: function(error) {
-                // alert("eerr")
-                console.log(error)
-            }
-        })
-        // console.log("5")
-    }, 12000);
+    // setInterval(function () {
+    //     $.ajax({
+    //         url: base_url_function()+'security/control.php',
+    //         data: {},
+    //         type: 'GET',
+    //         dataType: "json",
+    //         success: function(data) {
+    //             // alert(data)
+    //             if(data){
+    //                 // console.log("True")
+    //                 window.location=base_url_function()+'index.php'
+    //             }else{
+    //                 // console.log("False")
+    //             }
+    //         },
+    //         error: function(error) {
+    //             // alert("eerr")
+    //             console.log(error)
+    //         }
+    //     })
+    //     // console.log("5")
+    // }, 12000);
 
 })
 

@@ -1,9 +1,21 @@
 // Obtém o elemento com o ID "registar_funcionario"
+const btnRegistarProvincia = document.getElementById("#registrar_provincia");
 const btnRegistarFuncionario = document.getElementById("registar_funcionario");
 const btnActualizarFuncionario = document.getElementById("actualizar_funcionario");
 const btnDesactivarFuncionario = document.getElementById("desactivar_funcionario");
 
 // Adiciona um ouvinte de evento de clique ao botão, chamando a função submitForm
+
+$(document).on("click", "#registrar_provincia", function(){
+  submitForm("form-rg", "addProvincia")
+
+})
+
+// btnRegistarProvincia?.addEventListener("click", (e) => 
+//   submitForm(e, "form-rg", "funcionario")
+
+// );
+
 btnRegistarFuncionario?.addEventListener("click", (e) =>
   submitForm(e, "form_funcionario", "funcionario/create.php")
 );
@@ -64,13 +76,15 @@ function validarFormulario(formularioID) {
  * @param {string} endPoint - Ponto de extremidade para onde os dados devem ser enviados
  * @returns {Promise} - A resposta da operação
  */
-async function submitForm(e, formularioID, endPoint) {
+async function submitForm(formularioID, endPoint) {
+
+
   // Mostra um indicador de carregamento
   showLoader();
   let errors_validation = 0;
 
   // Impede o envio padrão do formulário
-  e.preventDefault();
+  // e.preventDefault();
 
   // Valida o formulário e obtém o número de erros de validação
   errors_validation = validarFormulario(formularioID);
@@ -126,10 +140,10 @@ async function submitForm(e, formularioID, endPoint) {
   } else {
     // Exibe uma mensagem de erro caso haja campos obrigatórios não preenchidos
     Swal.fire({
-      icon: "error",
+      icon: "warning",
       title: "Por favor preencha os campos obrigatórios!",
       showConfirmButton: true,
-    });
+      });
   }
 
   // Esconde o indicador de carregamento
@@ -150,7 +164,7 @@ async function gravarDados(formularioID, endPoint) {
   const formularioPreparado = new FormData(formulario);
 
   // Faz uma solicitação POST assíncrona para o servidor usando fetch
-  let response = await fetch(`./app/ajax/${endPoint}`, {
+  let response = await fetch(`${endPoint}`, {
     method: "POST",
     body: formularioPreparado,
   })
