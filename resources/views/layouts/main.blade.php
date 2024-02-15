@@ -69,9 +69,6 @@
     <script src="{{ asset('js/pagination.js')}}"></script>
 
 
-    <script src="{{ asset('dist-assets/js/plugins/sweetalert2.min.js')}}"></script> 
-    <script src="{{ asset('dist-assets/js/scripts/sweetalert.script.min.js')}}"></script>
-
         
  <!-- Bootstrap js E CSS normal
 		============================================ --> 

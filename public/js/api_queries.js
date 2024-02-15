@@ -1,20 +1,19 @@
 // Obtém o elemento com o ID "registar_funcionario"
-const btnRegistarProvincia = document.getElementById("#registrar_provincia");
+const btnRegistrarProvincia = document.getElementById("registrar_provincia");
 const btnRegistarFuncionario = document.getElementById("registar_funcionario");
 const btnActualizarFuncionario = document.getElementById("actualizar_funcionario");
 const btnDesactivarFuncionario = document.getElementById("desactivar_funcionario");
 
 // Adiciona um ouvinte de evento de clique ao botão, chamando a função submitForm
 
-$(document).on("click", "#registrar_provincia", function(){
-  submitForm("form-rg", "addProvincia")
+$(document).on("click", "#registrar_provincia", function(e){
+  submitForm(e, "form_registrar", "provincia")
 
 })
 
-// btnRegistarProvincia?.addEventListener("click", (e) => 
-//   submitForm(e, "form-rg", "funcionario")
-
-// );
+btnRegistrarProvincia?.addEventListener("click", (e) => 
+  submitForm(e, "form_registrar", "provincia")
+);
 
 btnRegistarFuncionario?.addEventListener("click", (e) =>
   submitForm(e, "form_funcionario", "funcionario/create.php")
@@ -76,7 +75,7 @@ function validarFormulario(formularioID) {
  * @param {string} endPoint - Ponto de extremidade para onde os dados devem ser enviados
  * @returns {Promise} - A resposta da operação
  */
-async function submitForm(formularioID, endPoint) {
+async function submitForm(e, formularioID, endPoint) {
 
 
   // Mostra um indicador de carregamento
@@ -84,7 +83,7 @@ async function submitForm(formularioID, endPoint) {
   let errors_validation = 0;
 
   // Impede o envio padrão do formulário
-  // e.preventDefault();
+  e.preventDefault();
 
   // Valida o formulário e obtém o número de erros de validação
   errors_validation = validarFormulario(formularioID);
@@ -108,18 +107,29 @@ async function submitForm(formularioID, endPoint) {
     } else {
 
       // Exibe uma mensagem de sucesso com base no ID do formulário
-      if (formularioID == "form_funcionario") {
-        Swal.fire({
-          icon: "success",
-          title: `${data.message}`,
-          showConfirmButton: false,
-          timer: 1500,
-        }).then((result) => {
-          if (result.dismiss) {
-           
-            location.assign('listagem_funcionarios.php');
-          }
-        });
+      if (formularioID == "form_registrar") {
+        
+        if(data.success == true){
+          Swal.fire({
+            icon: "success",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+            $("#rg-provincia").modal('hide'); 
+            limparInputsModal('form_registrar')
+            list("");
+        }else{
+          Swal.fire({
+            icon: "warning",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+
+
       } else if (formularioID == "form_funcionario_update") {
         console.log(data)
           Swal.fire({
@@ -144,6 +154,9 @@ async function submitForm(formularioID, endPoint) {
       title: "Por favor preencha os campos obrigatórios!",
       showConfirmButton: true,
       });
+
+  hideLoader();
+
   }
 
   // Esconde o indicador de carregamento
@@ -181,4 +194,10 @@ async function gravarDados(formularioID, endPoint) {
 
   // Retorna a resposta do servidor
   return response;
+}
+
+
+function limparInputsModal(FORM_ID) {
+  $('#'+FORM_ID+  'input').val(''); // Limpa todos os inputs dentro do elemento com o ID "modal"
+  $('#'+FORM_ID+ 'select').val(''); // Limpa todos os select dentro do elemento com o ID "modal"
 }

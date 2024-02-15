@@ -39,7 +39,7 @@ class ProvinciasController extends Controller
         $json['id'] = null;
 
         $data = $request->validate([
-            'descricao' => 'required',
+            'nome' => 'required',
         ]);
 
         $data['activo'] = 1;
@@ -47,9 +47,16 @@ class ProvinciasController extends Controller
         if ($provincia = Provincia::create($data)) {
             $json['success'] = true;
             $json['nome']=$provincia->nome;
+            $json['message']= 'Provincia de '.$provincia->nome.' adicionada com sucesso.';
+            $json['code']= 200;
+        }else{
+            $json['success'] = false;
+            $json['nome']=$provincia->nome;
+            $json['message']= 'Provincia de '.$provincia->nome.' não foi adicionada.';
+            $json['code']= 500;
         }
 
         echo json_encode($json);
-        dd("finish");
+        // dd("finish");
     }
 }

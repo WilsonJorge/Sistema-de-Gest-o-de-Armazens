@@ -125,7 +125,7 @@
     <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
         <ul class="childNav" data-parent="funcionario_group">
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="{{Route::has('provincia')?route('provincia'):"404"}}" id="provincia_link">
+                <a class="nav-item-hold" href="{{Route::has('list')?route('list'):"404"}}" id="provincia_link">
                     <i class="nav-icon i-Map2"></i>
                     <span class="nav-text" style="font-size: 14px;">Provincia</span>
                 </a>
@@ -227,10 +227,10 @@
     </div>
     <div class="sidebar-overlay"></div>
 </div>
-{{-- <?php include_once './components/modals/modal_change_pass.php'; ?> --}}
+{{-- @include ('./components/modals/modal_change_pass.php') --}}
 <!-- <script src="./js/api_queries.js"></script> -->
-<script src="./dist-assets/js/scripts/sweetalert2@11.js"></script>
-<script>
+{{-- <script src="./dist-assets/js/scripts/sweetalert2@11.js"></script> --}}
+{{-- <script>
     function verificarSenhas(e) {
         var novaSenha = document.getElementById("novaSenha").value;
         var confirmarSenha = document.getElementById("confirmarSenha").value;
@@ -265,4 +265,4 @@
             input.type = "password";
         }
     }
-</script>
+</script> --}}

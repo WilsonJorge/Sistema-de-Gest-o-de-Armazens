@@ -33,11 +33,11 @@
                     <td> @php 
                      if($item->estado == '1') : 
                      @endphp
-                     <div class="badge text-bg-success">Activo</div>
+                     <div class="badge bg-success text-white">Activo</div>
                      @php
                      elseif($item->estado == '2'):                    
                     @endphp
-                     <div class="badge text-bg-danger">Inactivo</div>
+                     <div class="badge bg-danger text-white">Inactivo</div>
                     @php
                     endif
                     @endphp

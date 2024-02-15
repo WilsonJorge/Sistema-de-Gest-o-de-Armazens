@@ -8,18 +8,18 @@
           </div>
           <div class="modal-body">
 
-          <form action="#"  id="form-rg" method="post" enctype="multipart/form-data">
+          <form action="#"  id="form_registrar" method="post" enctype="multipart/form-data">
               <div class="row">    
                       
                       <div class="col-md-12 form-group">
-                          <label for="firstName1" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Descrição<span class="text-danger">*</span></label>
-                          <input class="form-control" id="descricao_modal" name="descricao" type="text"  placeholder="Digite a descrição" required/>
+                          <label for="firstName1" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Nome da Provincia<span class="text-danger">*</span></label>
+                          <input class="form-control" id="nome" name="nome" type="text"  placeholder="Digite o nome" required/>
                       </div>
                       
                       
                   </div>
 
-          {{-- @csrf --}}
+          @csrf
           </form>
 
              
