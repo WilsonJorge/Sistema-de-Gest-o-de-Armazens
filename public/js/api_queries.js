@@ -118,8 +118,9 @@ async function submitForm(e, formularioID, endPoint) {
           });
 
             $("#rg-provincia").modal('hide'); 
-            limparInputsModal('form_registrar')
-            list("");
+              window.location.reload()
+            // limparInputsModal('form_registrar')
+            // list("");
         }else{
           Swal.fire({
             icon: "warning",
@@ -197,7 +198,20 @@ async function gravarDados(formularioID, endPoint) {
 }
 
 
-function limparInputsModal(FORM_ID) {
-  $('#'+FORM_ID+  'input').val(''); // Limpa todos os inputs dentro do elemento com o ID "modal"
-  $('#'+FORM_ID+ 'select').val(''); // Limpa todos os select dentro do elemento com o ID "modal"
+function limparInputsModal(formularioID) {
+  const form = document.getElementById(formularioID);
+  const inputs = form.querySelectorAll('input, select, textarea');
+
+  inputs.forEach(input => {
+
+    if (input.type === 'checkbox' || input.type === 'radio') {
+      input.checked = false;
+    } else if (input.tagName === 'SELECT') {
+      // $("#"+input.id).trigger("change"); // jQuery para o elemento <select>
+      $(input).trigger("change");
+    } else {
+      input.value = '';
+    }
+  });
 }
+
