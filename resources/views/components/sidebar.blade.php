@@ -80,7 +80,7 @@
             
             <li class="nav-item" id="vaga_li" data-item="vaga_group">
                 <a class="nav-item-hold" href="./listagem_marcacoes.php" id="vaga_link">
-                    <i class="nav-icon fas fa-map"></i>
+                    <i class="nav-icon fa fa-map-marker fa-outline"></i>
                     <span class="nav-text" style="font-size: 14px;">Vagas</span>
                 </a>
                 <div class="triangle"></div>

@@ -8,6 +8,7 @@
 <div class="app-admin-wrap layout-sidebar-large">
     @include('components.sidebar')
     @include('provincia.modal.form_add')
+    @include('provincia.modal.form_edit')
 
     <!-- =============== Left side End ================-->
     <div class="main-content-wrap sidenav-open d-flex flex-column">

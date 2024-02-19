@@ -44,9 +44,9 @@
                     
                     </td>
                     <td> 
-                        <button class="btn btn-primary"><i class="i-Eye"></i> </button>
-                        <button class="btn btn-warning"><i class="i-Edit"></i> </button>
-                        <button class="btn btn-danger"><i class="i-Remove"></i> </button>
+                        <button class="btn btn-primary"><i class="fa fa-eye"></i> </button>
+                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil"></i> </button>
+                        <button class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                     </td>
                 </tr>
             @endforeach
@@ -71,8 +71,24 @@
     </div>
 @endif
 
+<script>
+
+    $(document).on("click", "#btn_edit", function(){
+
+        let id = $(this).val()
+        let nome = $(this).attr('nome');
+
+        //Preencher os campos do modal de upadte
+        $("#id").val(id)
+        $("#nome_editar").val(nome)
+  
+
+    });
+</script>
 
 @php
     $_SESSION['title'] = "Lista de Provincias";
     $_SESSION['html'] .= $content;
 @endphp
+
+
