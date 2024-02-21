@@ -46,7 +46,15 @@
                     <td> 
                         <button class="btn btn-primary"><i class="fa fa-eye"></i> </button>
                         <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil"></i> </button>
-                        <button class="btn btn-danger"><i class="fa fa-trash"></i> </button>
+                        
+                        @if($item->estado == '1')                  
+                        <button title="Remover a provincia" class="btn btn-danger" value="{{ $item->id }}" id="btn_delete"><i class="fa fa-trash"></i> </button>
+                        @endif
+
+                        @if($item->estado == '2')                    
+                        <button title="Activar a provincia" class="btn btn-success" value="{{ $item->id }}" id="btn_active"><i class="fa fa-check"></i> </button>
+                        @endif
+                    
                     </td>
                 </tr>
             @endforeach
@@ -70,21 +78,6 @@
         Nenhum registro encontrado.
     </div>
 @endif
-
-<script>
-
-    $(document).on("click", "#btn_edit", function(){
-
-        let id = $(this).val()
-        let nome = $(this).attr('nome');
-
-        //Preencher os campos do modal de upadte
-        $("#id").val(id)
-        $("#nome_editar").val(nome)
-  
-
-    });
-</script>
 
 @php
     $_SESSION['title'] = "Lista de Provincias";

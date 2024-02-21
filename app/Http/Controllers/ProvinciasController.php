@@ -10,23 +10,13 @@ class ProvinciasController extends Controller
 {
     public function list(Request $request)
     {
-        // $nome = $request->input('nome') ?? "";
-        // $estado = $request->input('estado') ?? "";
-
-        // Lógica para buscar dados com base nos parâmetros fornecidos
-        // $provincias = Provincia::where('nome', 'like', '%' . $nome . '%')
-        //                        ->where('estado', $estado)
-        //                        ->get();
-
-        $provincias = Provincia::all();
-        return view('provincia.tabela', ["provincias" =>$provincias ?? []]);
-
-        // echo json_encode($provincias);
-
-        // return response()->json(view('provincia.index', ['provincia' => $provincia])->render());
-        // return view('provincia.tabela', compact('provincias'));
-
+        $estado = $request->input('estado', ''); 
+    
+        $provincias = Provincia::where('estado', $estado)->get();
+    
+        return view('provincia.tabela', ["provincias" => $provincias ?? []]);
     }
+    
 
     public function index(Request $request){
         return view('provincia.index');
@@ -35,28 +25,60 @@ class ProvinciasController extends Controller
     public function add(Request $request)
     {
 
-        $json['success'] = false;
-        $json['id'] = null;
+        try {
+            $data = $request->validate([
+                'nome' => 'required|unique:provincia,nome',
+            ]);
+        
+            $provincia = Provincia::create($data);
 
-        $data = $request->validate([
-            'nome' => 'required',
-        ]);
-
-        $data['activo'] = 1;
-
-        if ($provincia = Provincia::create($data)) {
-            $json['success'] = true;
-            $json['nome']=$provincia->nome;
-            $json['message']= 'Provincia de '.$provincia->nome.' adicionada com sucesso.';
-            $json['code']= 200;
-        }else{
+            if ($provincia) {
+                $json['success'] = true;
+                $json['nome'] = $provincia->nome;
+                $json['message'] = 'Província de ' . $provincia->nome . ' adicionada com sucesso.';
+                $json['code'] = 200;
+            } else {
+                $json['success'] = false;
+                $json['message'] = 'Erro ao adicionar a província de '. $provincia->nome;
+                $json['code'] = 500;
+            }
+        
+        } catch (\Illuminate\Validation\ValidationException $e) {
+           
+            $errors = $e->validator->errors()->all();
+        
             $json['success'] = false;
-            $json['nome']=$provincia->nome;
-            $json['message']= 'Provincia de '.$provincia->nome.' não foi adicionada.';
-            $json['code']= 500;
+            $json['message'] = 'Erro de validação do dado, o dado enviado é inválido ou já existe.';
+            $json['errors'] = $errors;
+            $json['code'] = 422; // HTTP 422 Unprocessable Entity
         }
+        
 
         echo json_encode($json);
-        // dd("finish");
+    }
+
+    public function delete()
+    {
+        $id = $_POST['provincia'];
+        $estado = $_POST['estado'];
+        $json['success'] = false;
+        $provincia = Provincia::find($id);
+        if (!empty($provincia)) {
+            $data = ['estado' => $estado];
+            if ($provincia->update($data)) {
+                $json['success'] = true;
+                if($estado == '1'){
+                    $json['message'] = 'Província activada com sucesso.';
+                }else if($estado == '2'){
+                    $json['message'] = 'Província removida com sucesso.';
+                }
+                $json['code'] = 200;
+            }else{
+                $json['success'] = false;
+                $json['message'] = 'Ocorreu um erro ao remover a província.';
+                $json['code'] = 500;
+            }
+        }
+        echo json_encode($json);
     }
 }

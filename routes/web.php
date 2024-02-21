@@ -38,3 +38,4 @@ Route::get('provincia', [ProvinciasController::class, 'index'])->name('list');
 Route::get('provincias', [ProvinciasController::class, 'list'])->name('listar');
 
 Route::post('provincia', [ProvinciasController::class, 'add'])->name('create');
+Route::post('provincia/delete', [ProvinciasController::class, 'delete'])->name('delete');

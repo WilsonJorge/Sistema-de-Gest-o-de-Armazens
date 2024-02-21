@@ -31,7 +31,8 @@
                             <!-- <h1 class="font-weight-bold">Multas</h1><br> -->
                             <div class="row">
                                 <div class="col-md-12 text-right ">
-                                     <button  title="Adicionar nova provincia" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-provincia" id="btn_registar"><i class="fa fa-plus"></i>  </button> 
+                                     <button  title="Adicionar nova provincia" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-provincia" id="btn_registar"><i class="fa fa-plus"></i> ADICIONAR</button> 
+                                     <button  title="Imprimir um pdf" class="btn btn-info" type="button" id="print"><i class="fa fa-print"></i> PDF</button> 
                                 </div>
                             </div>
                             <div class="row">
@@ -39,13 +40,13 @@
                                     <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Nome da provincia</label>
                                     <input type="text" class="form-control" name="nome" id="nome" />
                                 </div>
-                                 <div class="col-md-4 mb-3" hidden>
+                                 <div class="col-md-4 mb-3">
                                     <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Estado</label>
-                                    <select name="genero" id="genero" class="form-control select2">
+                                    <select name="estado_filtro" id="estado_filtro" class="form-control select2">
 
-                                        <option value="" seleted> -- Selecione --</option>
-                                        <option value="M">Activo</option>
-                                        <option value="F">Inactivo</option>
+                                        <option value=""> ___ Selecione uma opção ___</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
                                     </select>
                                 </div>
                                 {{--
@@ -63,9 +64,9 @@
 
                                     </select>
                                 </div> --}}
-                                {{-- <div class="col-md-12 mb-3 text-right" style="text-align: right">
-                                    <button class="btn btn-secondary btn-lg search pesquisar">Pesquisar</button>
-                                </div> --}}
+                                <div class="col-md-12 mb-3 text-right" style="text-align: right">
+                                    <button class="btn btn-secondary search pesquisar">Pesquisar</button>
+                                </div>
                             </div>
                             <br><br>
 
@@ -91,47 +92,165 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function() {
-        $(".select2").select2({
-            allowClear: true,
+        $(document).ready(function() {
+            $(".select2").select2({
+                allowClear: true,
+            });
+
+            list("");
+
+            $(document).on('click', '.pagination a', paginaClickHandler);
+
+            $("#distrito_li").addClass("nav-item-active")
+            $("#distrito_link").addClass("nav-item-active-text")
+
+            $(".pesquisar").click(function() {
+                list("")
+            })
         });
 
-        list("");
+        $(document).on("click", "#btn_edit", function(){
 
-        $(document).on('click', '.pagination a', paginaClickHandler);
+            let id = $(this).val()
+            let nome = $(this).attr('nome');
 
-        $("#distrito_li").addClass("nav-item-active")
-        $("#distrito_link").addClass("nav-item-active-text")
-
-        $(".pesquisar").click(function() {
-            list("")
-        })
-    });
+            //Preencher os campos do modal de upadte
+            $("#id").val(id)
+            $("#nome_editar").val(nome)
 
 
-//     $(document).on('click', "#btn_registar",function(){
+        });
 
 
-// alert("clickk")
+        $(document).on("click", "#btn_delete", function(){
+                    var provincia_id = $(this).val();
+                    var estado = '2'
 
-//     })
+
+                    Swal.fire({
+                            title: 'ALERTA!',
+                            text: "Tem certeza que deseja remover a província?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#0CC27E',
+                            cancelButtonColor: '#FF586B',
+                            confirmButtonText: 'Sim, Tenho!',
+                            cancelButtonText: 'Não, cancelar!',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'btn btn-success mr-5',
+                                cancelButton: 'btn btn-danger'
+                            }
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Ação quando o botão de confirmação é clicado
+                            update_estado(provincia_id, estado);
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            // Ação quando o botão de cancelamento é clicado
+                            Swal.fire('', 'Operação foi cancelada!', 'error');
+                        }
+                    });
 
 
+        });
+
+        function update_estado(provincia_id, estado) {
+            showLoader();
+            $.ajax({
+                url: '{{url("provincia/delete")}}',
+                method: 'POST',
+                data: {
+                    _token: '{{csrf_token()}}',
+                    provincia : provincia_id,
+                    estado : estado,
+                },
+                dataType: 'json', 
+                success: function(response) {
+                    // console.log(response)
+                    if(response.success == true){
+                        Swal.fire({
+                            icon: "success",
+                            title: `${response.message}`,
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+        
+                        list("")
+
+                    }else{
+                        Swal.fire({
+                            icon: "error",
+                            title: `${response.message}`,
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+                    }
+
+
+                },
+                error: function(err) {
+                    console.log(err);
+                    Swal.fire({
+                        icon: "error",
+                        title: `${err}`,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+
+                }
+            }).always(function() {
+                hideLoader();
+            });
+        }
+
+
+
+        $(document).on("click", "#btn_active", function(){
+                    provincia_id = $(this).val();
+                    var estado = '1';
+
+
+                    Swal.fire({
+                            title: 'ALERTA!',
+                            text: "Tem certeza que deseja activar a província?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#0CC27E',
+                            cancelButtonColor: '#FF586B',
+                            confirmButtonText: 'Sim, Tenho!',
+                            cancelButtonText: 'Não, cancelar!',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'btn btn-success mr-5',
+                                cancelButton: 'btn btn-danger'
+                            }
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Ação quando o botão de confirmação é clicado
+                            update_estado(provincia_id, estado);
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            // Ação quando o botão de cancelamento é clicado
+                            Swal.fire('', 'Operação foi cancelada!', 'error');
+                        }
+                    });
+
+
+        });
 
 
 
         function list(page) {
             showLoader();
+            var estado = $("#estado_filtro").val() == "" ? "1" : $("#estado_filtro").val();
+
+
             $.ajax({
                 url: '{{url("provincias")}}',
                 method: 'GET',
                 data: {
-                    // "nome": $("#nome_aluno").val(),
-                    // "genero": $("#genero").val(),
-                    // "id_provincia": $("#id_provincia").val(),
-                    // "id_distrito": $("#id_distrito").val(),
+                    "estado": estado,
                 },
-                dataType: 'html', // Vamos ajustar para 'json' para esperar uma resposta JSON
+                dataType: 'html', 
                 success: function(data) {
                     $(".list_provincia").html(data);
                 },
