@@ -3,17 +3,17 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle-2">Editar provincia</h5>
+              <h5 class="modal-title" id="exampleModalCenterTitle-2">Editar província</h5>
               <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
 
-          <form action="#"  id="form_registrar" method="post" enctype="multipart/form-data">
+          <form action="#"  id="form_editar_provincia" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" id="id">
               <div class="row">    
                       
                       <div class="col-md-12 form-group">
-                          <label for="firstName1" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Nome da Provincia<span class="text-danger">*</span></label>
+                          <label for="firstName1" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Nome da Província<span class="text-danger">*</span></label>
                           <input class="form-control" id="nome_editar" name="nome_editar" type="text"  placeholder="Digite o nome" required/>
                       </div>
                       

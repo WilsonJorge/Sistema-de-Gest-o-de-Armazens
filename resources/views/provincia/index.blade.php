@@ -9,6 +9,7 @@
     @include('components.sidebar')
     @include('provincia.modal.form_add')
     @include('provincia.modal.form_edit')
+    @include('provincia.modal.detalhes')
 
     <!-- =============== Left side End ================-->
     <div class="main-content-wrap sidenav-open d-flex flex-column">
@@ -36,15 +37,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Nome da provincia</label>
                                     <input type="text" class="form-control" name="nome" id="nome" />
                                 </div>
-                                 <div class="col-md-4 mb-3">
+                                 <div class="col-md-3 mb-3">
                                     <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Estado</label>
                                     <select name="estado_filtro" id="estado_filtro" class="form-control select2">
 
-                                        <option value=""> ___ Selecione uma opção ___</option>
+                                        <option value=""> Selecione uma opção </option>
                                         <option value="1">Activo</option>
                                         <option value="2">Inactivo</option>
                                     </select>
@@ -147,7 +148,7 @@
                             update_estado(provincia_id, estado);
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
                             // Ação quando o botão de cancelamento é clicado
-                            Swal.fire('', 'Operação foi cancelada!', 'error');
+                            Swal.fire('', 'Operação foi cancelada!', 'warning');
                         }
                     });
 

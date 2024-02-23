@@ -24,6 +24,12 @@
     <link rel="stylesheet" href="{{ asset('dist-assets/select2-bootstrap4-theme/select2-bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('dist-assets/css/toastr.min.css')}}">
 
+    {{-- Timeline --}}
+    <link rel="stylesheet" href="{{ asset('dist-assets/css/plugins/smart.wizard/smart_wizard.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dist-assets/css/plugins/smart.wizard/smart_wizard_theme_arrows.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dist-assets/css/plugins/smart.wizard/smart_wizard_theme_circles.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('dist-assets/css/plugins/smart.wizard/smart_wizard_theme_dots.min.css')}}" />
+
 
     <!-- preloader css-->
     <link rel="stylesheet" href="{{ asset('dist-assets/css/preloader.css')}}" />
@@ -48,6 +54,8 @@
     <script src="{{ asset('dist-assets/js/scripts/sidebar.large.script.min.js')}}"></script>
     <script src="{{ asset('dist-assets/js/flatpickr.js')}}"></script>
     <script src="{{ asset('js/imask.js')}}"></script>
+    <script src="{{ asset('dist-assets/js/plugins/jquery.smartWizard.min.js')}}"></script>
+    <script src="{{ asset('dist-assets/js/scripts/smart.wizard.script.min.js')}}"></script>
 
 
     <!-- Script geral -->

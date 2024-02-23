@@ -8,7 +8,7 @@
           </div>
           <div class="modal-body">
 
-          <form action="#"  id="form_registrar" method="post" enctype="multipart/form-data">
+          <form action="#"  id="form_registrar_provincia" method="post" enctype="multipart/form-data">
               <div class="row">    
                       
                       <div class="col-md-12 form-group">

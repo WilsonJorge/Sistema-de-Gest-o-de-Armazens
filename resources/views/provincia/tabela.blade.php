@@ -44,7 +44,7 @@
                     
                     </td>
                     <td> 
-                        <button class="btn btn-primary"><i class="fa fa-eye"></i> </button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
                         <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil"></i> </button>
                         
                         @if($item->estado == '1')                  

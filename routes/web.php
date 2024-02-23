@@ -37,5 +37,7 @@ Route::get('funcionario', function () {
 Route::get('provincia', [ProvinciasController::class, 'index'])->name('list');
 Route::get('provincias', [ProvinciasController::class, 'list'])->name('listar');
 
-Route::post('provincia', [ProvinciasController::class, 'add'])->name('create');
+Route::post('provincia/add', [ProvinciasController::class, 'add'])->name('create');
 Route::post('provincia/delete', [ProvinciasController::class, 'delete'])->name('delete');
+Route::post('provincia/edit', [ProvinciasController::class, 'edit'])->name('edit');
+// Route::post('provincia/show', [ProvinciasController::class, 'show'])->name('show');

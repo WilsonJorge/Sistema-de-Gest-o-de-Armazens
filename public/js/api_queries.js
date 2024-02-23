@@ -7,7 +7,11 @@ const btnDesactivarFuncionario = document.getElementById("desactivar_funcionario
 // Adiciona um ouvinte de evento de clique ao botão, chamando a função submitForm
 
 $(document).on("click", "#registrar_provincia", function(e){
-  submitForm(e, "form_registrar", "provincia")
+  submitForm(e, "form_registrar_provincia", "provincia/add")
+
+})
+$(document).on("click", "#editar_provincia", function(e){
+  submitForm(e, "form_editar_provincia", "provincia/edit")
 
 })
 
@@ -107,26 +111,48 @@ async function submitForm(e, formularioID, endPoint) {
     } else {
 
       // Exibe uma mensagem de sucesso com base no ID do formulário
-      if (formularioID == "form_registrar") {
+      if (formularioID == "form_registrar_provincia") {
         
         if(data.success == true){
           Swal.fire({
             icon: "success",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
           });
 
             $("#rg-provincia").modal('hide'); 
               window.location.reload()
-            // limparInputsModal('form_registrar')
-            // list("");
+            list("");
         }else{
           Swal.fire({
             icon: "warning",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
+          });
+        }
+
+
+      }else if (formularioID == "form_editar_provincia") {
+        
+        if(data.success == true){
+          Swal.fire({
+            icon: "success",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+
+            $("#edit-provincia").modal('hide'); 
+              // window.location.reload()
+            list("");
+        }else{
+          Swal.fire({
+            icon: "warning",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 2000,
           });
         }
 
@@ -137,7 +163,7 @@ async function submitForm(e, formularioID, endPoint) {
             icon: "success",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
           }).then((result) => {
             if (result.dismiss) {
              location.assign('listagem_funcionarios.php');             

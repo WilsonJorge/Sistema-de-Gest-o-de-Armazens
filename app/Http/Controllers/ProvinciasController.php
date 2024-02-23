@@ -48,8 +48,7 @@ class ProvinciasController extends Controller
             $errors = $e->validator->errors()->all();
         
             $json['success'] = false;
-            $json['message'] = 'Erro de validação do dado, o dado enviado é inválido ou já existe.';
-            $json['errors'] = $errors;
+            $json['message'] = $errors;
             $json['code'] = 422; // HTTP 422 Unprocessable Entity
         }
         
@@ -81,4 +80,32 @@ class ProvinciasController extends Controller
         }
         echo json_encode($json);
     }
+
+    public function edit()
+    {
+        $id = $_POST['id'];
+        $nome = $_POST['nome_editar'];
+        $json['success'] = false;
+        $provincia = Provincia::find($id);
+        if (!empty($provincia)) {
+            $data = ['nome' => $nome];
+            if ($provincia->update($data)) {
+                $json['success'] = true;
+                $json['message'] = 'Província ' . $provincia->nome . ' actualizada com sucesso.';
+                $json['code'] = 200;
+            }else{
+                $json['success'] = false;
+                $json['message'] = 'Ocorreu um erro ao editar a província.';
+                $json['code'] = 500;
+            }
+        }
+        echo json_encode($json);
+    }
+
+
+
+
+
+
+
 }
