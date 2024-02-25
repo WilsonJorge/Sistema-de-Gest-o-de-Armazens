@@ -22596,12 +22596,12 @@ ngb-rating .half {
   padding: 20px 20px; }
 
 .nav-tabs {
-  border-bottom: 1px solid #3197ef; }
+  border-bottom: 1px solid #e5ce027a ; }
 
 .nav-tabs .nav-item .nav-link.active {
   border: 1px solid transparent;
-  background: rgba(102, 51, 153, 0.1);
-  border-color: #3197ef #3197ef #fff; }
+  background: rgba(229, 206, 2, 0.1);
+  border-color: #e5ce027a  #e5ce027a  #fff; }
 
 .dropdown-toggle:after {
   display: inline-block;

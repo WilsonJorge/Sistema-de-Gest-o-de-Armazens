@@ -45,7 +45,7 @@
                     </td>
                     <td> 
                         <button class="btn btn-primary" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
-                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil"></i> </button>
+                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
                         
                         @if($item->estado == '1')                  
                         <button title="Remover a provincia" class="btn btn-danger" value="{{ $item->id }}" id="btn_delete"><i class="fa fa-trash"></i> </button>

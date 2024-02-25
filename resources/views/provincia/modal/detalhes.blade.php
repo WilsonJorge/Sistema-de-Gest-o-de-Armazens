@@ -78,8 +78,11 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade active show" id="historico" role="tabpanel" aria-labelledby="about-tab">
-                                                <div class="mb-1"><strong class="mr-1"> Adelson Saguate registrou a provinvia</strong>
-                                                    <p class="text-muted"> 20-02-2024 15:14 pm</p>
+                                                <div class="mb-1"><strong class="mr-1"> <i class="fa fa-user-circle mr-1"></i> Adelson Saguate registrou a provinvia</strong>
+                                                    <p class="text-muted"> <i class="fa fa-calendar mr-1"></i> 20-02-2024 15:14 pm</p>
+                                                </div>
+                                                <div class="mb-1"><strong class="mr-1"> <i class="fa fa-user-circle mr-1"></i> Lucas Tive actualizou a provinvia</strong>
+                                                    <p class="text-muted"> <i class="fa fa-calendar mr-1"></i> 24-02-2024 11:14 pm</p>
                                                 </div>
                                                 {{-- <?php foreach ($historico->data as $item) : ?>
     
