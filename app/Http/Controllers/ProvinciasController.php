@@ -16,6 +16,15 @@ class ProvinciasController extends Controller
     
         return view('provincia.tabela', ["provincias" => $provincias ?? []]);
     }
+
+    public function show($id)
+    { 
+
+        $provincia = Provincia::where('id', $id)->get();
+    
+        echo json_encode($provincia ?? []);
+
+    }
     
 
     public function index(Request $request){

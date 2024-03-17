@@ -12,7 +12,10 @@
             <h4><strong>Total:  </strong>{{ count($provincias) }}</h4>
         </div>
     </div>
-    @php ob_start(); @endphp
+    @php 
+        ob_start(); 
+    @endphp
+
     <table class="display table table-hover" width="100%">
         <thead>
             <tr style="font-weight: bold; color:black">
@@ -20,11 +23,20 @@
                 <th class="col-2">Nome</th>
                 <th class="col-2">Data Criação</th>
                 <th class="col-2">Estado</th>
+    @php 
+        $content .= ob_get_contents();  
+    @endphp
                 <th class="col-2">Acções</th>
+   @php 
+        ob_start(); 
+   @endphp
+
             </tr>
         </thead>
         <tbody>
-            @php $cont = 1; @endphp
+            @php 
+            $cont = 1; 
+            @endphp
             @foreach ($provincias as $item)
                 <tr>
                     <th scope="row">{{ $cont++ }}</th>
@@ -43,8 +55,11 @@
                     @endphp
                     
                     </td>
+    @php 
+        $content .= ob_get_contents(); 
+    @endphp
                     <td> 
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
+                        <button class="btn btn-primary" id="btn_show" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
                         <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
                         
                         @if($item->estado == '1')                  
@@ -56,12 +71,18 @@
                         @endif
                     
                     </td>
+    @php 
+        ob_start(); 
+    @endphp
+
                 </tr>
             @endforeach
         </tbody>
         <tfoot></tfoot>
     </table>
-    @php $content = ob_get_contents(); @endphp
+    @php 
+        $content .= ob_get_contents(); 
+    @endphp
     {{-- <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             @php
@@ -79,9 +100,15 @@
     </div>
 @endif
 
-@php
+
+
+<?php
+
+
     $_SESSION['title'] = "Lista de Provincias";
-    $_SESSION['html'] .= $content;
-@endphp
+    $_SESSION['html'] = $content;
+
+    // echo $_SESSION['html'];
+?>
 
 

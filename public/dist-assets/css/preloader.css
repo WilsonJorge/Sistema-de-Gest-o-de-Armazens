@@ -18,7 +18,7 @@
 
     .loader-p:before, .loader-p:after{
     content: '';
-    border: 1em solid #15e38a;
+    border: 1em solid #3197ef;
     border-radius: 50%;
     width: inherit;
     height: inherit;

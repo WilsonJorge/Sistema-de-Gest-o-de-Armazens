@@ -155,6 +155,34 @@
 
         });
 
+
+        $(document).on("click", "#btn_show", function(){
+            showLoader();
+
+            var provincia_id = $(this).val();
+
+            $.ajax({
+                url: '{{url("provincia/1")}}',
+                method: 'GET',
+                data: {
+                    _token: '{{csrf_token()}}',
+                },
+                dataType: 'json', 
+                success: function(response) {
+                    console.log(response)
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            }).always(function() {
+                hideLoader();
+            });
+
+        });
+
+
+
+
         function update_estado(provincia_id, estado) {
             showLoader();
             $.ajax({
