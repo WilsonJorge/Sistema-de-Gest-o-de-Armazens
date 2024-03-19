@@ -1,6 +1,6 @@
 <?php 
-@session_unset();
-@session_start();
+session_unset();
+session_start();
 date_default_timezone_set("Africa/Johannesburg");
 
 $conteudo = isset($_SESSION['html'] ) ? $_SESSION['html'] : "<h4>Nenhuma informação encontrada!!!</h4>";
@@ -49,7 +49,8 @@ $parametro4 = isset($_SESSION['parametro4'] ) ? $_SESSION['parametro4'] : "";
         <tr>
             <td style="width: 100%;text-align: center; color: #444444;" class="text-center">
                 <div class="invoice-desc" style="text-align: center; padding-top: 0; margin-top: 0">
-                    <!-- <img style="width: 80px" src="../img/image.png" alt="Logo"><br><br> -->
+                    <img style="width: 80px" src="./img/logo_up.png" alt="Logo"><br><br>
+                    
                     SISTEMA DE GESTÃO DE ESTACIONAMENTO DE VEÍCULOS<br/>
                     Universidade Pedagógica de Maputo<br/>
                     Email: up.@ac.mz
@@ -80,8 +81,9 @@ $parametro4 = isset($_SESSION['parametro4'] ) ? $_SESSION['parametro4'] : "";
                 </h2>
             </div>
             <br/>
-            <div class="text-left" style="width: 100%; color:black">
+            <div style=" color:black">
                 <?=$conteudo?>
+                
 
             </div>
         </div>

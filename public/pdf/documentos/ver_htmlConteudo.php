@@ -28,7 +28,7 @@ $html2pdf->SetDisplayMode('fullpage');
 $html2pdf->AddPage();
 
 $html2pdf->SetHTMLFooter('
-<small><div><label style="text-align=left; font-weight: bold;" class="h6">&copy; Copyright <strong style="font-weight: bold;">Universidade Pedagógica de Maputo, UPM </strong></label></div> <div style="text-align: right">{PAGENO} of {nbpg}</div></small>', 'O');
+<small><div><label style="text-align=left; font-weight: bold;" class="h6">&copy; Copyright <strong style="font-weight: bold;">Universidade Pedagógica de Maputo, UPM & Adelson Saguate </strong></label></div> <div style="text-align: right">{PAGENO} of {nbpg}</div></small>', 'O');
 // convert
 $html2pdf->writeHTML($content);
 // send the PDF

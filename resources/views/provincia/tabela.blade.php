@@ -1,9 +1,14 @@
 @php
-    session()->start();
-    $_SESSION['html'] = null;
-    $_SESSION['title'] = null;
-    $content = null;
+//    session()->start();
+  //  $_SESSION['html'] = null;
+   // $_SESSION['title'] = null;
+   // $content = null;
 @endphp
+
+<?php session_start();?>
+<?php $_SESSION['html'] = null;?>
+<?php $_SESSION['title'] = null; ?>
+<?php $content=null; ?>
 
 
 @if(count($provincias)>0)
@@ -19,10 +24,14 @@
     <table class="display table table-hover" width="100%">
         <thead>
             <tr style="font-weight: bold; color:black">
-                <th class="col-1">#</th>
+                <th style="width: 8.33%;">#</th>
+                <th class="text-center" style="width: 16.67%;" >Nome</th>
+                <th class="text-center" style="width: 16.67%;" >Data Criação</th>
+                <th class="text-center" style="width: 16.67%;" >Estado</th>
+                <!-- <th class="col-1">#</th>
                 <th class="col-2">Nome</th>
                 <th class="col-2">Data Criação</th>
-                <th class="col-2">Estado</th>
+                <th class="col-2">Estado</th> -->
     @php 
         $content .= ob_get_contents();  
     @endphp
@@ -40,9 +49,9 @@
             @foreach ($provincias as $item)
                 <tr>
                     <th scope="row">{{ $cont++ }}</th>
-                    <td>{{ $item->nome }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td> @php 
+                    <td class="text-center">{{ $item->nome }}</td>
+                    <td class="text-center" >{{ $item->created_at }}</td>
+                    <td class="text-center"> @php 
                      if($item->estado == '1') : 
                      @endphp
                      <div class="badge bg-success text-white">Activo</div>
@@ -59,7 +68,7 @@
         $content .= ob_get_contents(); 
     @endphp
                     <td> 
-                        <button class="btn btn-primary" id="btn_show" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
+                        <button class="btn btn-primary" id="btn_show" value="{{ $item->id }}" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
                         <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
                         
                         @if($item->estado == '1')                  
@@ -102,13 +111,7 @@
 
 
 
-<?php
-
-
-    $_SESSION['title'] = "Lista de Provincias";
-    $_SESSION['html'] = $content;
-
-    // echo $_SESSION['html'];
-?>
+<?php $_SESSION['title'] = "Lista de Provincias"; ?>
+<?php   $_SESSION['html'] = $content; ?>
 
 

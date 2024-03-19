@@ -23,6 +23,9 @@ class ProvinciasController extends Controller
         $provincia = Provincia::where('id', $id)->get();
     
         echo json_encode($provincia ?? []);
+        // return view('provincia.modal.detalhes', ["provincia" => $provincia ?? []]);
+
+
 
     }
     

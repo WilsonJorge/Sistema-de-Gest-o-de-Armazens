@@ -160,9 +160,10 @@
             showLoader();
 
             var provincia_id = $(this).val();
+            var url = '{{url("provincia")}}/' + provincia_id;
 
             $.ajax({
-                url: '{{url("provincia/1")}}',
+                url: url,
                 method: 'GET',
                 data: {
                     _token: '{{csrf_token()}}',
@@ -170,6 +171,8 @@
                 dataType: 'json', 
                 success: function(response) {
                     console.log(response)
+
+
                 },
                 error: function(err) {
                     console.log(err);
