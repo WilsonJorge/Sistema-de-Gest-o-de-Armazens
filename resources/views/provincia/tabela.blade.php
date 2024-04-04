@@ -68,10 +68,10 @@
         $content .= ob_get_contents(); 
     @endphp
                     <td> 
-                        <a href="#"  class="btn btn-primary"><i class="fa fa-eye text-white"></i> </a>
-                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
+                        <a href="{{ route('detalhes', ['id' => $item->id]) }}"  class="btn btn-primary"><i class="fa fa-eye text-white"></i> </a>
                         
-                        @if($item->estado == '1')                  
+                        @if($item->estado == '1') 
+                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
                         <button title="Remover a provincia" class="btn btn-danger" value="{{ $item->id }}" id="btn_delete"><i class="fa fa-trash"></i> </button>
                         @endif
 

@@ -11,23 +11,48 @@ class ProvinciasController extends Controller
 {
     public function list(Request $request)
     {
-        $estado = $request->input('estado', ''); 
-    
-        $provincias = Provincia::where('estado', $estado)->get();
+        
+        $query = Provincia::query();
+
+        if ($request->has('estado')) {
+            $estado = $request->input('estado');
+            $query->where('estado', $estado);
+        }
+
+        if ($request->has('nome')) {
+            $nome = $request->input('nome');
+            $query->where('nome', 'like', '%' . $nome . '%');
+        }
+
+        $provincias = $query->get();
     
         return view('provincia.tabela', ["provincias" => $provincias ?? []]);
     }
 
     public function show($id)
     { 
-
         $provincia = Provincia::where('id', $id)->get();
     
-        // echo json_encode($provincia ?? []);
         return view('provincia.detalhes', ["provincia" => $provincia ?? []]);
 
 
 
+    }
+    public function show_details($id)
+    { 
+
+        $provincia = Provincia::find($id);
+
+        $historico = Historico::where('row_id', $id)
+                       ->where('tabela', 'provincia')
+                       ->get();
+
+
+        if (!$provincia) {
+            return response()->json(['error' => 'Provincia não encontrada'], 404);
+        }
+        
+        return response()->view('provincia.detalhes', ["provincia" => $provincia, "historico" => $historico]);
     }
     
 

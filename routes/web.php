@@ -37,6 +37,7 @@ Route::get('funcionario', function () {
 Route::get('provincia', [ProvinciasController::class, 'index'])->name('list');
 Route::get('provincias', [ProvinciasController::class, 'list'])->name('listar');
 Route::get('provincia/{id}', [ProvinciasController::class, 'show'])->name('show');
+Route::get('provincia_detalhes/{id}', [ProvinciasController::class, 'show_details'])->name('detalhes');
 
 Route::post('provincia/add', [ProvinciasController::class, 'add'])->name('create');
 Route::post('provincia/delete', [ProvinciasController::class, 'delete'])->name('delete');
