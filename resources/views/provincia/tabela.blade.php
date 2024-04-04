@@ -68,7 +68,7 @@
         $content .= ob_get_contents(); 
     @endphp
                     <td> 
-                        <button class="btn btn-primary" id="btn_show" value="{{ $item->id }}" data-toggle="modal" data-target="#details-provincia"><i class="fa fa-eye"></i> </button>
+                        <a href="#"  class="btn btn-primary"><i class="fa fa-eye text-white"></i> </a>
                         <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
                         
                         @if($item->estado == '1')                  

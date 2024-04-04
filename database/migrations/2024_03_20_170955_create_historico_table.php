@@ -15,7 +15,12 @@ class CreateHistoricoTable extends Migration
     {
         Schema::create('historico', function (Blueprint $table) {
             $table->id();
+            $table->text('descricao');
+            $table->string('tabela');
+            $table->integer('row_id');
+            $table->integer('user_id');
             $table->timestamps();
+            
         });
     }
 

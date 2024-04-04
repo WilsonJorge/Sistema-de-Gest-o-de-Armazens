@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Provincia;
+use App\Models\Historico;
 
 class ProvinciasController extends Controller
 {
@@ -22,8 +23,8 @@ class ProvinciasController extends Controller
 
         $provincia = Provincia::where('id', $id)->get();
     
-        echo json_encode($provincia ?? []);
-        // return view('provincia.modal.detalhes', ["provincia" => $provincia ?? []]);
+        // echo json_encode($provincia ?? []);
+        return view('provincia.detalhes', ["provincia" => $provincia ?? []]);
 
 
 
@@ -43,12 +44,20 @@ class ProvinciasController extends Controller
             ]);
         
             $provincia = Provincia::create($data);
+            $historico = new Historico();
+            
 
             if ($provincia) {
                 $json['success'] = true;
                 $json['nome'] = $provincia->nome;
                 $json['message'] = 'Província de ' . $provincia->nome . ' adicionada com sucesso.';
                 $json['code'] = 200;
+
+                $historico->descricao = 'Registrou a província de ' . $provincia->nome . '.';
+                $historico->tabela = $provincia->getTable(); 
+                $historico->row_id = $provincia->id; 
+                $historico->user_id = 1; 
+                $historico->save();
             } else {
                 $json['success'] = false;
                 $json['message'] = 'Erro ao adicionar a província de '. $provincia->nome;

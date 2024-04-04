@@ -123,7 +123,6 @@ async function submitForm(e, formularioID, endPoint) {
 
             $("#rg-provincia").modal('hide'); 
               window.location.reload()
-            list("");
         }else{
           Swal.fire({
             icon: "warning",
