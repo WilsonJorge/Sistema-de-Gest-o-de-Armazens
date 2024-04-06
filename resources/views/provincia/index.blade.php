@@ -48,6 +48,20 @@
                                         <option value="2">Inactivo</option>
                                     </select>
                                 </div>
+                                 <div class="col-md-3 mb-3">
+                                    <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Limite</label>
+                                    <select name="estado_filtro" id="estado_filtro" class="form-control select2">
+
+                                        <option value=""> Selecione o limite </option>
+                                        <option value="1">1</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="200">200</option>
+                                        <option value="1000">1000</option>
+                                        <option value="2000">2000</option>
+                                        <option value="">Todos</option>
+                                    </select>
+                                </div>
                                
                                 <div class="col-md-12 mb-3 text-right" style="text-align: right">
                                     <button class="btn btn-secondary search pesquisar">Pesquisar</button>
@@ -82,15 +96,27 @@
                 allowClear: true,
             });
 
-            list("");
+            var page = 1
+            var limite = 1
 
-            $(document).on('click', '.pagination a', paginaClickHandler);
+            list(page,limite);
+
+            // $(document).on('click', '.pagination a', paginaClickHandler);
+
+            $(document).on('click', '.pagination a', function(event) {
+                    event.preventDefault();
+                    page = $(this).attr('href').split('page=')[1];
+                    $(this).attr('href', '');
+                    list(page, limite);
+
+                });
 
             $("#distrito_li").addClass("nav-item-active")
             $("#distrito_link").addClass("nav-item-active-text")
 
             $(".pesquisar").click(function() {
-                list("")
+                list(page,limite);
+
             })
         });
 
@@ -188,7 +214,8 @@
                             timer: 2000,
                         });
         
-                        list("")
+                        list(page,limite);
+
 
                     }else{
                         Swal.fire({
@@ -250,20 +277,29 @@
 
         });
 
+        $(document).on('change','#limite',function() {
+                        page = 1;
+                        limite = $(this).val();
+                        list(page, limite);
+        });
 
 
-        function list(page) {
+
+        function list(page, limite) {
             showLoader();
             var estado = $("#estado_filtro").val() == "" ? "1" : $("#estado_filtro").val();
             var nome = $("#nome_filtro").val()
 
 
             $.ajax({
-                url: '{{url("provincias")}}',
+                // url: '{{url("provincias")}}',
+                url: '{{url("provincias")}}?page=' + page,
+
                 method: 'GET',
                 data: {
                     "estado": estado,
                     "nome": nome,
+                    "limite": limite,
                 },
                 dataType: 'html', 
                 success: function(data) {

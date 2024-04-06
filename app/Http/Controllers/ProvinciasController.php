@@ -12,6 +12,20 @@ class ProvinciasController extends Controller
     public function list(Request $request)
     {
         
+        // $query = Provincia::query();
+
+        // if ($request->has('estado')) {
+        //     $estado = $request->input('estado');
+        //     $query->where('estado', $estado);
+        // }
+
+        // if ($request->has('nome')) {
+        //     $nome = $request->input('nome');
+        //     $query->where('nome', 'like', '%' . $nome . '%');
+        // }
+
+        // $provincias = $query->get();
+
         $query = Provincia::query();
 
         if ($request->has('estado')) {
@@ -24,7 +38,14 @@ class ProvinciasController extends Controller
             $query->where('nome', 'like', '%' . $nome . '%');
         }
 
-        $provincias = $query->get();
+        // Define o número de itens por página (você pode ajustar conforme necessário)
+        $itensPorPagina = $request->input('limite', 10); // Padrão: 10 itens por página
+
+        // Recupera as províncias paginadas
+        $provincias = $query->paginate($itensPorPagina);
+
+        // Adiciona parâmetros de filtro à URL da páginação
+        $provincias->appends($request->query());
     
         return view('provincia.tabela', ["provincias" => $provincias ?? []]);
     }
@@ -78,11 +99,8 @@ class ProvinciasController extends Controller
                 $json['message'] = 'Província de ' . $provincia->nome . ' adicionada com sucesso.';
                 $json['code'] = 200;
 
-                $historico->descricao = 'Registrou a província de ' . $provincia->nome . '.';
-                $historico->tabela = $provincia->getTable(); 
-                $historico->row_id = $provincia->id; 
-                $historico->user_id = 1; 
-                $historico->save();
+                $descricao = 'Registou a província de ' . $provincia->nome . '.';
+                $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
             } else {
                 $json['success'] = false;
                 $json['message'] = 'Erro ao adicionar a província de '. $provincia->nome;
@@ -108,14 +126,23 @@ class ProvinciasController extends Controller
         $estado = $_POST['estado'];
         $json['success'] = false;
         $provincia = Provincia::find($id);
+        $historico = new Historico();
+
         if (!empty($provincia)) {
             $data = ['estado' => $estado];
             if ($provincia->update($data)) {
                 $json['success'] = true;
                 if($estado == '1'){
                     $json['message'] = 'Província activada com sucesso.';
+
+                    $descricao = 'Activou a província de ' . $provincia->nome . '.';
+                    $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+
                 }else if($estado == '2'){
                     $json['message'] = 'Província removida com sucesso.';
+                    
+                    $descricao = 'Removeu a província de ' . $provincia->nome . '.';
+                    $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
                 }
                 $json['code'] = 200;
             }else{
@@ -133,12 +160,18 @@ class ProvinciasController extends Controller
         $nome = $_POST['nome_editar'];
         $json['success'] = false;
         $provincia = Provincia::find($id);
+        $historico = new Historico();
+
         if (!empty($provincia)) {
             $data = ['nome' => $nome];
             if ($provincia->update($data)) {
                 $json['success'] = true;
                 $json['message'] = 'Província ' . $provincia->nome . ' actualizada com sucesso.';
                 $json['code'] = 200;
+
+                $descricao = "Actualizou a província de ". $provincia->nome ."";
+                $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+
             }else{
                 $json['success'] = false;
                 $json['message'] = 'Ocorreu um erro ao editar a província.';
@@ -147,6 +180,8 @@ class ProvinciasController extends Controller
         }
         echo json_encode($json);
     }
+
+   
 
 
 

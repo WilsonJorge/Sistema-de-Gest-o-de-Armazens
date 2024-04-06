@@ -92,16 +92,15 @@
     @php 
         $content .= ob_get_contents(); 
     @endphp
-    {{-- <div class="row">
+     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            @php
-            $paginationButtons = paginationButtons($provincia->meta->current_page, $totalPaginas, $maxButtons);
-            @endphp
+          
             <div class="pagination justify-content-end">
-                {{ $paginationButtons }}
+            {{ $provincias->links() }}
+            
             </div>
         </div>
-    </div> --}}
+    </div> 
 @else
     <div class="alert alert-info" role="alert">
         <strong class="text-capitalize">Alerta!</strong>
