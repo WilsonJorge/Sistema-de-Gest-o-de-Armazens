@@ -97,10 +97,9 @@
           
             <div class="pagination justify-content-end">
             {{ $provincias->links() }}
-            
             </div>
         </div>
-    </div> 
+    </div>  
 @else
     <div class="alert alert-info" role="alert">
         <strong class="text-capitalize">Alerta!</strong>
