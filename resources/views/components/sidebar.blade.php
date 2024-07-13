@@ -63,7 +63,7 @@
     <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
         <ul class="navigation-left">
             <li class="nav-item" id="dashboard_li">
-                <a class="nav-item-hold" href="./dashboard1.php" id="dashboard_link">
+                <a class="nav-item-hold" href="{{ route('pagina_inicial')}}" id="dashboard_link">
                     <i class="i-Bar-Chart text-28 mr-2"></i>
                     <span class="nav-text" style="font-size: 14px;">Dashboard</span>
                 </a>

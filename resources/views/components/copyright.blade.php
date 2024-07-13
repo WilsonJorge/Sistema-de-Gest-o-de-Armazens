@@ -2,7 +2,7 @@
 <div class="flex-grow-1"></div>
 <div class="app-footer">
     <div class="footer-bottom pt-3 d-flex flex-column flex-sm-row align-items-center">
-        <a class="btn btn-primary text-white btn-rounded" href="./dashboard1.php">Página Inicial</a>
+        <a class="btn btn-primary text-white btn-rounded" href="{{ route('pagina_inicial')}}">Página Inicial</a>
         <span class="flex-grow-1"></span>
         <div class="d-flex align-items-center">
             {{-- <a href="https://up.ac.mz/"><h1 style="color: #3197ef; font-family: 'Unbounded'; font-size: 20px; padding: 8px;">UPM</h1></a> --}}

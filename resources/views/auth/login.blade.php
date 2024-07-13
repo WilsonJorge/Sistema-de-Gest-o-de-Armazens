@@ -19,7 +19,7 @@
                     <img src="./dist-assets/images/logo_up.png" style="width: 100px;" alt="" class="logo">
                 </div>
                 <h3 style="text-align: center;">Portal de Gestão</h3>
-                <form action="#" id="frm_login" method="POST">
+                <form action="{{ route('pagina_inicial')}}" id="frm_login" method="GET">
                     <div class="row">
                         <div class="form-group mb-3 col-md-12">
                             <label for="email" class="sr-only" style="font-weight: bold;">E-mail:</label>

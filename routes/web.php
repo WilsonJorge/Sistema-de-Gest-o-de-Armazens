@@ -34,6 +34,11 @@ Route::get('funcionario', function () {
 //     return view('provincia.listagem_provincia');
 // })->name('provincia');
 
+Route::get('/home', function () {
+    return view('home');
+})->name('pagina_inicial');
+
+
 Route::get('provincia', [ProvinciasController::class, 'index'])->name('list');
 Route::get('provincias', [ProvinciasController::class, 'list'])->name('listar');
 Route::get('provincia/{id}', [ProvinciasController::class, 'show'])->name('show');
