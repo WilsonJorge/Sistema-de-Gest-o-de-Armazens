@@ -1,1 +1,3 @@
 A impressão de PDF não aceita imagem, ao colocar a tag <img> o PDF não é gerado...
+Erros o fazer o login no sistema;
+Ao clicar o botao entrar, deve entrar logo na pagina inicial;
