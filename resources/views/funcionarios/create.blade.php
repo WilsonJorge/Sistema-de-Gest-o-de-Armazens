@@ -13,7 +13,7 @@
         <!-- ============ Body content start ============= -->
         <div class="main-content">
             <div class="breadcrumb">
-                <h1 class="font-weight-bold">Lista de Funcionarios</h1>
+                <h1 class="font-weight-bold">Registar Funcionarios</h1>
                 <!-- <ul>
                     <li><a href="#">Home</a></li>
                     <li>Buttons</li>
@@ -23,17 +23,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-3">
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 text-right ">
-                                    {{-- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button> --}}
-
-                                    <a class="btn btn-primary lg" href="{{create.blade.php}}">
-                                        <i class="i-Edit"></i> Novo funcionario
-                                        {{-- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button> --}}
-                                    </a>
-                                    
-
+                                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -88,7 +81,7 @@
                             <div class="table-responsive">
                                 <div class="list_funcionarios"></div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

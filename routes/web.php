@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProvinciasController;
+use App\Http\Controllers\FuncionarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('funcionario', function () {
-    return view('funcionarios.index');
-})->name('funcionario');
+Route::get('funcionario', [FuncionarioController::class, 'index'])->name('funcionario');
 
 // Route::get('/provincia', function () {
 //     return view('provincia.listagem_provincia');
