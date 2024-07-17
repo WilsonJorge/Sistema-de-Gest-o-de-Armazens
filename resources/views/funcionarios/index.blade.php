@@ -28,7 +28,7 @@
                                 <div class="col-md-12 text-right ">
                                     {{-- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button> --}}
 
-                                    <a class="btn btn-primary lg" href="{{create.blade.php}}">
+                                    <a class="btn btn-primary lg" href="{{ route('funcionarios.form_create') }}">
                                         <i class="i-Edit"></i> Novo funcionario
                                         {{-- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button> --}}
                                     </a>

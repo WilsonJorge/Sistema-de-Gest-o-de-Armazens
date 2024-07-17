@@ -29,6 +29,12 @@ Route::get('/', function () {
 
 Route::get('funcionario', [FuncionarioController::class, 'index'])->name('funcionario');
 
+
+Route::prefix('funcionarios')->name('funcionarios.')->group(function () { 
+    Route::get('create', [FuncionarioController::class, 'create'])->name('form_create');
+});
+
+
 // Route::get('/provincia', function () {
 //     return view('provincia.listagem_provincia');
 // })->name('provincia');

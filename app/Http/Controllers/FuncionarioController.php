@@ -17,4 +17,10 @@ class FuncionarioController extends Controller
         
     }
 
+    public function create(){
+
+        $provincias = Provincia::all();
+        return view('funcionarios.create', compact('provincias'));
+    }
+
 }
