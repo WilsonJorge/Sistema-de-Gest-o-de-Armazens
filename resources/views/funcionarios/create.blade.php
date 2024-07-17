@@ -20,73 +20,75 @@
                 </ul> -->
             </div>
             <div class="separator-breadcrumb border-top"></div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-3">
-                        {{-- <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 text-right ">
-                                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registar_funcionario_modal"><i class="i-Edit"></i> Novo funcionario</button>
-                                </div>
-                            </div>
-                            <div class="row">
 
-                                <div class="col-md-3 mb-3">
-                                    <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Nome do Funcionario</label>
-                                    <input type="text" class="form-control" name="nome" id="nome" />
-                                </div>
-                                
-                                <div class="col-md-3 mb-3">
-                                                 <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Provincia Residência</label>
-                                                 <select name="id_provincia" id="id_provincia" class="form-control select2" required>
-                                                     <option value="">--selecione uma opção--</option>
-                                                     <?php foreach ($provincias as $item) : ?>
-                                                         <option value="{{ $item->id }}">{{ $item->nome }}</option>
-                                                     <?php endforeach ?>
-                                                 </select>
-                                </div>
-
-                                <div class="col-md-3 mb-3">
-                                                 <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Distrito Residência</label>
-                                                 <select name="id_distrito" id="id_distrito" class="form-control select2" required>
-                                                     <option value="">--selecione uma opção--</option>
-                                                 </select>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                                 <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Género</label>
-                                                 <select name="genero" id="genero" class="form-control select2" required>
-                                                     <option value="">selecione uma opção</option>
-                                                     <option value="Masculino">Masculino</option>
-                                                     <option value="Feminino">Feminino</option>
-                                                 </select>
-                                </div>
-
-                                <div class="col-md-3 mb-3">
-                                        <label for="" style="font-family: 'Arial narrow'; font-size: 14px; color: #2C304D; font-weight: 600;">Estado</label>
-                                                 <select name="estado" id="estado" class="form-control select2" required>
-                                                     <option value="">selecione uma opção</option>
-                                                     <option value="1"> Activo</option>
-                                                     <option value="0"> Inactivo</option>
-                                               </select>
-                                </div>
-                                
-
-                                <div class="col-md-12 mb-3 text-right" style="text-align: right">
-                                    <button class="btn btn-secondary btn-xs search pesquisar">Pesquisar</button>
-                                </div>
-
-                            </div>
-                            <br><br>
-
-                            <div class="table-responsive">
-                                <div class="list_funcionarios"></div>
-                            </div>
-                        </div> --}}
+            <div class="row mb-3">
+                <div class="col-12 col-lg-6 col-sm-12">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="theme_selector">Themes</label>
+                            <select class="custom-select col-lg-6 col-sm-12" id="theme_selector">
+                                <option value="default">default</option>
+                                <option value="arrows">arrows</option>
+                                <option value="circles">circles</option>
+                                <option value="dots">dots</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end of main-content -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!--  SmartWizard html -->
+                    <div id="smartwizard">
+                        <ul>
+                            <li><a href="#step-1">Passo 1<br /><small>Descrição do passo 1</small></a></li>
+                            <li><a href="#step-2">Passo 2<br /><small>Descrição do passo 2</small></a></li>
+                            <li><a href="#step-3">Passo 3<br /><small>Descrição do passo 3</small></a></li>
+                            <li><a href="#step-4">Passo 4<br /><small>Descrição do passo 4</small></a></li>
+                        </ul>
+                        <div>
+                            <div id="step-1">
+                                @include('funcionarios.formAdd')
+                            </div>
+                            <div id="step-2">
+                                <h3 class="border-bottom border-gray pb-2">Step 2 Content</h3>
+                                <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                                    to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                            </div>
+                            <div id="step-3">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+
+                            </div>
+                            <div id="step-4">
+                                <h3 class="border-bottom border-gray pb-2">Step 4 Content</h3>
+                                <div class="card o-hidden">
+                                    <div class="card-header">My Details</div>
+                                    <div class="card-block p-0">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Name:</th>
+                                                    <td>Tim Smith</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email:</th>
+                                                    <td>example@example.com</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div><!-- end of main-content -->
         
         <!-- Footer Start -->
         <!-- modla update e registrar -->
