@@ -73,7 +73,7 @@
                         <?php endforeach ?>
                     </select>
             
-            </div>
+                </div>
                 <div class="form-group col-md-3">
                     <label class="ul-form__label" for="inputtext14">Contact:</label>
                     <input class="form-control" id="inputtext14" type="text" placeholder="Enter contact number " />
