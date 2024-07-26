@@ -15,7 +15,20 @@ class CreateFuncionarioTable extends Migration
     {
         Schema::create('funcionario', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('codigo', 20);
+            $table->string('nome', 100);
+            $table->string('apelido', 50);
+            $table->string('nrbi', 20);
+            $table->text('morada');
+            $table->string('telefone', 20);
+            $table->date('data_nascimento');
+            $table->string('email', 255);
+            $table->string('genero', 20);
+            $table->string('estado_civil', 20);
+            $table->unsignedBigInteger('estado');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

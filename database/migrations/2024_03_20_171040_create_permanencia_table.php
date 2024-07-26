@@ -15,7 +15,14 @@ class CreatePermanenciaTable extends Migration
     {
         Schema::create('permanencia', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('descricao', 100);
+            $table->unsignedBigInteger('veiculo_id');
+            $table->unsignedBigInteger('vaga_id');
+            $table->timestamp('data_entrada');
+            $table->timestamp('data_saida');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->unsignedBigInteger('user_id');
         });
     }
 

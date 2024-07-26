@@ -15,7 +15,12 @@ class CreateVagaTable extends Migration
     {
         Schema::create('vaga', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('numero');
+            $table->string('seccao', 10);
+            $table->unsignedBigInteger('estado')->default(1);
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

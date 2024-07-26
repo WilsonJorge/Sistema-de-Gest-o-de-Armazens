@@ -15,7 +15,10 @@ class CreateTipoUserTable extends Migration
     {
         Schema::create('tipo_user', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('descricao', 50);
+            $table->unsignedBigInteger('estado');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

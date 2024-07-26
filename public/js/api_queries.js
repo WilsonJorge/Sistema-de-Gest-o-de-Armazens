@@ -15,6 +15,11 @@ $(document).on("click", "#editar_provincia", function(e){
 
 })
 
+$(document).on("click", "#registrar_distrito", function(e){
+  submitForm(e, "form_registrar_distrito", "distrito/add")
+
+})
+
 btnRegistrarProvincia?.addEventListener("click", (e) => 
   submitForm(e, "form_registrar", "provincia")
 );
@@ -168,6 +173,28 @@ async function submitForm(e, formularioID, endPoint) {
              location.assign('listagem_funcionarios.php');             
             }
         });
+      }else if (formularioID == "form_registrar_distrito") {
+        
+        if(data.success == true){
+          Swal.fire({
+            icon: "success",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+
+            $("#rg-distrito").modal('hide'); 
+              window.location.reload()
+        }else{
+          Swal.fire({
+            icon: "warning",
+            title: `${data.message}`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+
+
       } 
        //Acrescentar outras exibições de mensagens
       

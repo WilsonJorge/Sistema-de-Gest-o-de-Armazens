@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB; 
+
+
 
 class CreateNumeracaoTable extends Migration
 {
@@ -15,7 +18,14 @@ class CreateNumeracaoTable extends Migration
     {
         Schema::create('numeracao', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('numero');
+            $table->string('sigla', 10);
+            $table->integer('sequence');
+            $table->integer('ano');
+            $table->unsignedBigInteger('estado');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('0000-00-00 00:00:00'))->useCurrentOnUpdate();
         });
     }
 

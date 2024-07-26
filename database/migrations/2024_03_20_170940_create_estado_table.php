@@ -15,7 +15,10 @@ class CreateEstadoTable extends Migration
     {
         Schema::create('estado', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('descricao', 100);
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

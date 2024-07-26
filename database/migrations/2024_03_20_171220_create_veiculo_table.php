@@ -15,7 +15,16 @@ class CreateVeiculoTable extends Migration
     {
         Schema::create('veiculo', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('codigo');
+            $table->string('marca', 50);
+            $table->string('modelo', 50);
+            $table->string('matricula', 20);
+            $table->string('cor', 20);
+            $table->unsignedBigInteger('funcionario_id');
+            $table->unsignedBigInteger('estado')->default(1);
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

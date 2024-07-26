@@ -15,7 +15,12 @@ class CreateTipoDocumentoTable extends Migration
     {
         Schema::create('tipo_documento', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('descricao', 20);
+            $table->unsignedBigInteger('provincia_id');
+            $table->unsignedBigInteger('estado');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

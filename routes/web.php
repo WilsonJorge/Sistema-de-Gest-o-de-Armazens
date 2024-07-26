@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProvinciasController;
+use App\Http\Controllers\DistritoController;
 use App\Http\Controllers\FuncionarioController;
 
 /*
@@ -52,4 +53,11 @@ Route::get('provincia_detalhes/{id}', [ProvinciasController::class, 'show_detail
 Route::post('provincia/add', [ProvinciasController::class, 'add'])->name('create');
 Route::post('provincia/delete', [ProvinciasController::class, 'delete'])->name('delete');
 Route::post('provincia/edit', [ProvinciasController::class, 'edit'])->name('edit');
-// Route::post('provincia/show', [ProvinciasController::class, 'show'])->name('show');
+
+
+// Distritos
+Route::get('distrito', [DistritoController::class, 'index'])->name('distrito');
+Route::post('distrito/add', [DistritoController::class, 'add'])->name('create');
+Route::post('distrito/delete', [DistritoController::class, 'delete'])->name('delete');
+Route::post('distrito/edit', [DistritoController::class, 'edit'])->name('edit');
+

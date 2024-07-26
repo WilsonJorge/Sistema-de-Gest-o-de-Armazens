@@ -15,7 +15,18 @@ class CreateAnexoTable extends Migration
     {
         Schema::create('anexo', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('tabela', 100);
+            $table->integer('row_id');
+            $table->unsignedBigInteger('tipo_documento_id');
+            $table->text('descricao');
+            $table->text('caminho');
+            $table->text('nome_original');
+            $table->text('novo_nome');
+            $table->string('extensao', 10);
+            $table->unsignedBigInteger('estado')->default(1);
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

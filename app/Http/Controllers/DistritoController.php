@@ -3,82 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Provincia;
+use App\Models\Historico;
+use App\Models\Distrito;
+
+
 
 class DistritoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+
+        $provincias = Provincia::all();
+
+        return view('distrito.index', compact('provincias'));
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function add(Request $request)
     {
-        //
+        try {
+            $data = $request->validate([
+                'nome' => 'required|unique:distrito,nome',
+                'provincia' => 'required',
+
+            ]);
+        
+            $distrito = Distrito::create($data);
+            $historico = new Historico();
+            
+
+            if ($provincia) {
+                $json['success'] = true;
+                $json['nome'] = $provincia->nome;
+                $json['message'] = 'Província de ' . $provincia->nome . ' adicionada com sucesso.';
+                $json['code'] = 200;
+
+                $descricao = 'Registou a província de ' . $provincia->nome . '.';
+                $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+            } else {
+                $json['success'] = false;
+                $json['message'] = 'Erro ao adicionar a província de '. $provincia->nome;
+                $json['code'] = 500;
+            }
+        
+        } catch (\Illuminate\Validation\ValidationException $e) {
+           
+            $errors = $e->validator->errors()->all();
+        
+            $json['success'] = false;
+            $json['message'] = $errors;
+            $json['code'] = 422; // HTTP 422 Unprocessable Entity
+        }
+        
+
+        echo json_encode($json);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
