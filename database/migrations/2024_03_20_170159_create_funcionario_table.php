@@ -27,8 +27,8 @@ class CreateFuncionarioTable extends Migration
             $table->string('estado_civil', 20);
             $table->unsignedBigInteger('estado');
             $table->unsignedBigInteger('user_id');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

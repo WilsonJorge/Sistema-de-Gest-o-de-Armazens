@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('email', 100);
             $table->string('avatar', 255);
             $table->unsignedBigInteger('estado')->default(1);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

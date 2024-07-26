@@ -100,7 +100,7 @@ class ProvinciasController extends Controller
                 $json['code'] = 200;
 
                 $descricao = 'Registou a província de ' . $provincia->nome . '.';
-                $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+                $historico->insert($provincia->getTable(), $provincia->id, $descricao);
             } else {
                 $json['success'] = false;
                 $json['message'] = 'Erro ao adicionar a província de '. $provincia->nome;
@@ -136,13 +136,13 @@ class ProvinciasController extends Controller
                     $json['message'] = 'Província activada com sucesso.';
 
                     $descricao = 'Activou a província de ' . $provincia->nome . '.';
-                    $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+                    $historico->insert($provincia->getTable(), $provincia->id, $descricao);
 
                 }else if($estado == '2'){
                     $json['message'] = 'Província removida com sucesso.';
                     
                     $descricao = 'Removeu a província de ' . $provincia->nome . '.';
-                    $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+                    $historico->insert($provincia->getTable(), $provincia->id, $descricao);
                 }
                 $json['code'] = 200;
             }else{
@@ -170,7 +170,7 @@ class ProvinciasController extends Controller
                 $json['code'] = 200;
 
                 $descricao = "Actualizou a província de ". $provincia->nome ."";
-                $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+                $historico->insert($provincia->getTable(), $provincia->id, $descricao);
 
             }else{
                 $json['success'] = false;

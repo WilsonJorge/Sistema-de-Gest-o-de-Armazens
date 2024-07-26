@@ -14,7 +14,7 @@ class Historico extends Model
     protected $fillable = ['descricao', 'tabela','row_id','user_id'];
 
 
-    public function insert($atributo, $tabela, $row_id, $descricao){
+    public function insert($tabela, $row_id, $descricao){
 
         $historico = new Historico();
 

@@ -19,7 +19,7 @@ class CreatePermanenciaTable extends Migration
             $table->unsignedBigInteger('veiculo_id');
             $table->unsignedBigInteger('vaga_id');
             $table->timestamp('data_entrada');
-            $table->timestamp('data_saida');
+            $table->timestamp('data_saida')->nullable(); // Change to nullable
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->unsignedBigInteger('user_id');

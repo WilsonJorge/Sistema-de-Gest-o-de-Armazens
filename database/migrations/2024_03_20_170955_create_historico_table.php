@@ -16,10 +16,11 @@ class CreateHistoricoTable extends Migration
         Schema::create('historico', function (Blueprint $table) {
             $table->id();
             $table->text('descricao');
-            $table->text('assunto');
+            $table->string('tabela',255);
+            $table->unsignedBigInteger('row_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             
         });

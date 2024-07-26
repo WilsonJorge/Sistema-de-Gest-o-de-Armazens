@@ -35,17 +35,17 @@ class DistritoController extends Controller
             $historico = new Historico();
             
 
-            if ($provincia) {
+            if ($distrito) {
                 $json['success'] = true;
-                $json['nome'] = $provincia->nome;
-                $json['message'] = 'Província de ' . $provincia->nome . ' adicionada com sucesso.';
+                $json['nome'] = $distrito->nome;
+                $json['message'] = 'Província de ' . $distrito->nome . ' adicionada com sucesso.';
                 $json['code'] = 200;
 
-                $descricao = 'Registou a província de ' . $provincia->nome . '.';
-                $historico->insert($provincia->nome, $provincia->getTable(), $provincia->id, $descricao);
+                $descricao = 'Registou a província de ' . $distrito->nome . '.';
+                $historico->insert($distrito->getTable(), $distrito->id, $descricao);
             } else {
                 $json['success'] = false;
-                $json['message'] = 'Erro ao adicionar a província de '. $provincia->nome;
+                $json['message'] = 'Erro ao adicionar a província de '. $distrito->nome;
                 $json['code'] = 500;
             }
         
