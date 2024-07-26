@@ -3,3 +3,6 @@ Erros o fazer o login no sistema;
 Ao clicar o botao entrar, deve entrar logo na pagina inicial;
 Ajustar a paginação usando o laravel;
 Os dados vem desfigurado e não permite navegar para uma outra pagina
+
+* Resolver o problema com a impressão de PDF não do PDF
+extension=mbstring //esta a gerar problemas pois n~ao est'a habilitada
