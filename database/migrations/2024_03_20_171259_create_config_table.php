@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB; 
 
 class CreateConfigTable extends Migration
 {
@@ -46,8 +45,8 @@ class CreateConfigTable extends Migration
             $table->text('sender_pass');
             $table->text('sender_name');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps(0); // Creates created_at and updated_at columns
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
