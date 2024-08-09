@@ -12,5 +12,5 @@ class Distrito extends Model
 
     protected $table = 'distrito';
 
-    protected $fillable = ['nome', 'provincia']; // Atributos que podem ser preenchidos
+    protected $fillable = ['nome', 'provincia_id', 'estado']; // Atributos que podem ser preenchidos
 }

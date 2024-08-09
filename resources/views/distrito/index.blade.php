@@ -30,7 +30,7 @@
                                     <i style="color:crimson; font-size:large" title="Estes campos permitem realizar filtros" class="fa fa-info-circle"></i>
                                 </div>
                                 <div class="col-md-12 text-right ">
-                                     <button  title="Adicionar nova provincia" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-provincia" id="btn_registar"><i class="fa fa-plus"></i> ADICIONAR</button> 
+                                     <button  title="Adicionar nova provincia" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-distrito" id="btn_registar"><i class="fa fa-plus"></i> ADICIONAR</button> 
                                      <button  title="Imprimir um pdf" class="btn btn-info" type="button" id="print"><i class="fa fa-print"></i> PDF</button> 
                                 </div>
                             </div>
@@ -98,8 +98,9 @@
             });
 
             var limite = $('#limit').val()
+            var page = 1
 
-            list(1,limite);
+            list(page,limite);
 
             // $(document).on('click', '.pagination a', paginaClickHandler);
 
@@ -116,7 +117,7 @@
 
             $(".pesquisar").click(function() {
                 let limite = $('#limit').val();
-                list(1,limite);
+                list(page,limite);
 
             })
 
@@ -134,13 +135,13 @@
 
 
             $(document).on("click", "#btn_delete", function(){
-                        var provincia_id = $(this).val();
+                        var distrito_id = $(this).val();
                         var estado = '2'
 
 
                         Swal.fire({
                                 title: 'ALERTA!',
-                                text: "Tem certeza que deseja remover a província?",
+                                text: "Tem certeza que deseja remover o distrito?",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonColor: '#0CC27E',
@@ -154,7 +155,7 @@
                                 }
                             }).then((result) => {
                             if (result.isConfirmed) {
-                                update_estado(provincia_id, estado);
+                                update_estado(distrito_id, estado);
                             } else if (result.dismiss === Swal.DismissReason.cancel) {
                                 Swal.fire('', 'Operação foi cancelada!', 'warning');
                             }
@@ -167,8 +168,8 @@
             $(document).on("click", "#btn_show", function(){
                 showLoader();
 
-                var provincia_id = $(this).val();
-                var url = '{{url("provincia")}}/' + provincia_id;
+                var distrito_id = $(this).val();
+                var url = '{{url("distrito")}}/' + distrito_id;
 
                 $.ajax({
                     url: url,
@@ -194,14 +195,14 @@
 
 
 
-            function update_estado(provincia_id, estado) {
+            function update_estado(distrito_id, estado) {
                 showLoader();
                 $.ajax({
-                    url: '{{url("provincia/delete")}}',
+                    url: '{{url("distrito/delete")}}',
                     method: 'POST',
                     data: {
                         _token: '{{csrf_token()}}',
-                        provincia : provincia_id,
+                        distrito_id : distrito_id,
                         estado : estado,
                     },
                     dataType: 'json', 
@@ -246,13 +247,13 @@
 
 
             $(document).on("click", "#btn_active", function(){
-                        provincia_id = $(this).val();
+                        distrito_id = $(this).val();
                         var estado = '1';
 
 
                         Swal.fire({
                                 title: 'ALERTA!',
-                                text: "Tem certeza que deseja activar a província?",
+                                text: "Tem certeza que deseja activar o distrito?",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonColor: '#0CC27E',
@@ -267,7 +268,7 @@
                             }).then((result) => {
                             if (result.isConfirmed) {
                                 // Ação quando o botão de confirmação é clicado
-                                update_estado(provincia_id, estado);
+                                update_estado(distrito_id, estado);
                             } else if (result.dismiss === Swal.DismissReason.cancel) {
                                 // Ação quando o botão de cancelamento é clicado
                                 Swal.fire('', 'Operação foi cancelada!', 'error');
@@ -287,8 +288,7 @@
 
 
                 $.ajax({
-                    // url: '{{url("provincias")}}',
-                    url: '{{url("provincias")}}?page=' + page,
+                    url: '{{url("distritos")}}?page=' + page,
 
                     method: 'GET',
                     data: {

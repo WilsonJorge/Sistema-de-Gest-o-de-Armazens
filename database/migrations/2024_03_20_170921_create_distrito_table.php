@@ -23,7 +23,6 @@ class CreateDistritoTable extends Migration
             ->on('provincia')
             ->onDelete('cascade') // Definir comportamento onDelete
             ->onUpdate('cascade'); // Definir comportamento onUpdate
-            $table->unsignedBigInteger('user_id'); // Adiciona a coluna provincia_id
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 

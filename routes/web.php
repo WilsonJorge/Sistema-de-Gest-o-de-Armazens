@@ -57,6 +57,9 @@ Route::post('provincia/edit', [ProvinciasController::class, 'edit'])->name('edit
 
 // Distritos
 Route::get('distrito', [DistritoController::class, 'index'])->name('distrito');
+Route::get('distritos', [DistritoController::class, 'list'])->name('listar');
+Route::get('distrito/{id}', [DistritoController::class, 'show'])->name('show');
+Route::get('distrito_detalhes/{id}', [DistritoController::class, 'show_details'])->name('detalhes');
 Route::post('distrito/add', [DistritoController::class, 'add'])->name('create');
 Route::post('distrito/delete', [DistritoController::class, 'delete'])->name('delete');
 Route::post('distrito/edit', [DistritoController::class, 'edit'])->name('edit');

@@ -98,8 +98,10 @@
             });
 
             var limite = $('#limit').val()
+            var page = 1
 
-            list(1,limite);
+
+            list(page,limite);
 
             // $(document).on('click', '.pagination a', paginaClickHandler);
 
@@ -116,7 +118,7 @@
 
             $(".pesquisar").click(function() {
                 let limite = $('#limit').val();
-                list(1,limite);
+                list(page,limite);
 
             })
 
@@ -299,6 +301,7 @@
                     dataType: 'html', 
                     success: function(data) {
                         $(".list_provincia").html(data);
+                        hideLoader();
                     },
                     error: function(err) {
                         console.log(err);

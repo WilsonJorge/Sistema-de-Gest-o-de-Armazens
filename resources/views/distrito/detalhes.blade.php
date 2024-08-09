@@ -28,21 +28,21 @@
                             <div class="ul-widget__item">
                                 <div class="ul-widget__info">
                                     <span class="ul-widget__desc text-mute">Nome</span>
-                                    <h3 class="ul-widget1__title" style="font-size: 15px"><?= $provincia->nome ?? "" ?></h3> 
+                                    <h3 class="ul-widget1__title" style="font-size: 15px"><?= $distrito->nome ?? "" ?></h3> 
                                 </div>
                                 <div class="ul-widget__info">
                                     <span class="ul-widget__desc text-mute">Data de Registo</span>
-                                    <h3 class="ul-widget1__title" style="font-size: 15px"><?= $provincia->created_at ?></h3>
+                                    <h3 class="ul-widget1__title" style="font-size: 15px"><?= $distrito->created_at ?></h3>
                                 </div>
                                 
                                 <div class="ul-widget__info">
                                     <span class="ul-widget__desc text-mute">Estado</span>
                                     
-                                    @if($provincia->estado == "1")
+                                    @if($distrito->estado == "1")
                                         <h3 class="ul-widget1__title" style="font-size: 15px"><span class="badge badge-success mr-1 mb-1"> Activo </span></h3>
                                     @endif
 
-                                    @if($provincia->estado == "2")
+                                    @if($distrito->estado == "2")
                                         <h3 class="ul-widget1__title" style="font-size: 15px"><span class="badge badge-danger mr-1 mb-1"> Inactivo </span></h3>
                                     @endif
                                         

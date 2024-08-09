@@ -11,10 +11,10 @@
 <?php $content=null; ?>
 
 
-@if(count($provincias)>0)
+@if(count($distritos)>0)
     <div class="row">
         <div class="col-md-12">
-            <h4><strong>Total:  </strong>{{ count($provincias) }}</h4>
+            <h4><strong>Total:  </strong>{{ count($distritos) }}</h4>
         </div>
     </div>
     @php 
@@ -46,7 +46,7 @@
             @php 
             $cont = 1; 
             @endphp
-            @foreach ($provincias as $item)
+            @foreach ($distritos as $item)
                 <tr>
                     <th scope="row">{{ $cont++ }}</th>
                     <td class="text-center">{{ $item->nome }}</td>
@@ -71,12 +71,12 @@
                         <a href="{{ route('detalhes', ['id' => $item->id]) }}"  class="btn btn-primary"><i class="fa fa-eye text-white"></i> </a>
                         
                         @if($item->estado == '1') 
-                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-provincia"><i class="fa fa-pencil text-white"></i> </button>
-                        <button title="Remover a provincia" class="btn btn-danger" value="{{ $item->id }}" id="btn_delete"><i class="fa fa-trash"></i> </button>
+                        <button class="btn btn-warning" nome="{{ $item->nome }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-distrito"><i class="fa fa-pencil text-white"></i> </button>
+                        <button title="Remover o distrito" class="btn btn-danger" value="{{ $item->id }}" id="btn_delete"><i class="fa fa-trash"></i> </button>
                         @endif
 
                         @if($item->estado == '2')                    
-                        <button title="Activar a provincia" class="btn btn-success" value="{{ $item->id }}" id="btn_active"><i class="fa fa-check"></i> </button>
+                        <button title="Activar o distrito" class="btn btn-success" value="{{ $item->id }}" id="btn_active"><i class="fa fa-check"></i> </button>
                         @endif
                     
                     </td>
@@ -96,7 +96,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
           
             <div class="pagination justify-content-end">
-            {{ $provincias->links() }}
+            {{ $distritos->links() }}
             </div>
         </div>
     </div>  
@@ -109,7 +109,7 @@
 
 
 
-<?php $_SESSION['title'] = "Lista de Provincias"; ?>
+<?php $_SESSION['title'] = "Lista de distritos"; ?>
 <?php   $_SESSION['html'] = $content; ?>
 
 

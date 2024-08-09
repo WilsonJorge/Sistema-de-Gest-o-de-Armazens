@@ -17,8 +17,8 @@
                       </div>
 
                       <div class="col-md-12 form-group">
-                        <label class="ul-form__label" for="id_provincia">Provincia Residência</label>
-                        <select name="id_provincia" id="id_provincia" class="form-control select2" required>
+                        <label class="ul-form__label" for="provincia_id">Provincia Residência</label>
+                        <select name="provincia_id" id="provincia_id" class="form-control select2" required>
                             <option value="">--selecione uma opção--</option>
                             <?php foreach ($provincias as $item) : ?>
                                 <option value="{{ $item->id }}">{{ $item->nome }}</option>

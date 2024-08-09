@@ -11,7 +11,7 @@ $(document).on("click", "#registrar_provincia", function(e){
 
 })
 $(document).on("click", "#editar_provincia", function(e){
-  submitForm(e, "form_editar_provincia", "provincia/edit")
+  submitForm(e, "form_editar_provincia", "provincia/edit")      
 
 })
 
@@ -149,8 +149,8 @@ async function submitForm(e, formularioID, endPoint) {
           });
 
             $("#edit-provincia").modal('hide'); 
-              // window.location.reload()
-            list("");
+              window.location.reload()
+            // list("");
         }else{
           Swal.fire({
             icon: "warning",
