@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProvinciasController;
 use App\Http\Controllers\DistritoController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\VagasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,4 +64,11 @@ Route::get('distrito_detalhes/{id}', [DistritoController::class, 'show_details']
 Route::post('distrito/add', [DistritoController::class, 'add'])->name('create');
 Route::post('distrito/delete', [DistritoController::class, 'delete'])->name('delete');
 Route::post('distrito/edit', [DistritoController::class, 'edit'])->name('edit');
+
+//Vagas
+Route::get('vaga', [VagasController::class, 'index'])->name('vagas');
+Route::get('vagas', [VagasController::class, 'list'])->name('listar');
+Route::get('vaga/{id}', [VagasController::class, 'show'])->name('show');
+Route::get('vaga_detalhes/{id}', [VagasController::class, 'show_details'])->name('detalhes');
+
 

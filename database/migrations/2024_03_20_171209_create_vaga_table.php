@@ -16,7 +16,8 @@ class CreateVagaTable extends Migration
         Schema::create('vaga', function (Blueprint $table) {
             $table->id();
             $table->integer('numero');
-            $table->string('seccao', 10);
+            $table->unsignedBigInteger('seccao_id');
+            $table->foreign('seccao_id')->references('id')->on('seccao')->onDelete('cascade');
             $table->unsignedBigInteger('estado')->default(1);
             $table->unsignedBigInteger('user_id');
             $table->dateTime('created_at')->useCurrent();
