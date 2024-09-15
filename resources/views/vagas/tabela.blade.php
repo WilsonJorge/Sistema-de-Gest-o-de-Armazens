@@ -67,7 +67,7 @@
                         <a href="{{ route('detalhes', ['id' => $item->id]) }}"  class="btn btn-primary"><i class="fa fa-eye text-white"></i> </a>
                         
                         @if($item->estado == '1') 
-                        <button class="btn btn-warning" numero="{{ $item->numero }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit-vaga"><i class="fa fa-pencil text-white"></i> </button>
+                        <button class="btn btn-warning" numero="{{ $item->numero }}" value="{{ $item->id }}" id="btn_edit" data-toggle="modal" data-target="#edit_vaga"><i class="fa fa-pencil text-white"></i> </button>
                         <button title="Remover a vaga" class="btn btn-danger" value="{{ $item->id }}" id="btn_delete"><i class="fa fa-trash"></i> </button>
                         @endif
 

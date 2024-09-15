@@ -191,14 +191,14 @@
 
         <ul class="childNav" data-parent="vaga_group">
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="{{ route('vagas') }}" id="provincia_link">
+                <a class="nav-item-hold" href="{{ route('vagas') }}" id="vaga_link">
                     <i class="nav-icon i-Arrow-Next"></i>
                     <span class="nav-text" style="font-size: 14px;">Todas Vagas</span>
                 </a>
             </li>
 
             <li class="nav-item" id="li_escolas">
-                <a class="nav-item-hold" href="listagem_presencas.php" id="escolas_link">
+                <a class="nav-item-hold" href="listagem_presencas.php" id="vaga_link">
                     <i class="nav-icon i-Lock-2"></i>
                     <span class="nav-text" style="font-size: 14px;">Reservadas</span>
                 </a>

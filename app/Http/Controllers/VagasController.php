@@ -20,7 +20,7 @@ class VagasController extends Controller
         $seccoes = Seccao::where('estado', 1)->get();
 
         return view('vagas.index', compact('vagas','seccoes'));
-        
+
     }
 
     public function list(Request $request)
@@ -45,7 +45,7 @@ class VagasController extends Controller
 
         // Adiciona parâmetros de filtro à URL da páginação
         $vagas->appends($request->query());
-    
+
         return view('vagas.tabela', ["vagas" => $vagas ?? []]);
     }
 
@@ -54,44 +54,44 @@ class VagasController extends Controller
     {
         try {
             $data = $request->validate([
-                'numero' => 'required|unique:vaga,numero',
-                'seccao' => 'required',
+                'numero' => 'required|:vaga,numero',
+                'seccao_id' => 'required',
 
             ]);
-        
+
             $vaga = Vaga::create($data);
             $historico = new Historico();
-            
+
 
             if ($vaga) {
                 $json['success'] = true;
                 $json['nome'] = $vaga->nome;
-                $json['message'] = 'Vaga ' .$vaga->seccao. ' | '.$vaga->numero. ' adicionada com sucesso.';
+                $json['message'] = 'Vaga ' .$vaga->seccao->descricao. ' | '.$vaga->numero. ' adicionada com sucesso.';
                 $json['code'] = 200;
 
-                $descricao = 'Registou a vaga ' .$vaga->seccao. ' | '.$vaga->numero. '.';
+                $descricao = 'Registou a vaga ' .$vaga->seccao->descricao. ' | '.$vaga->numero. '.';
                 $historico->insert($vaga->getTable(), $vaga->id, $descricao);
             } else {
                 $json['success'] = false;
-                $json['message'] = 'Erro ao adicionar a vaga ' .$vaga->seccao. ' | '.$vaga->numero;
+                $json['message'] = 'Erro ao adicionar a vaga ' .$vaga->seccao->descricao. ' | '.$vaga->numero;
                 $json['code'] = 500;
             }
-        
+
         } catch (\Illuminate\Validation\ValidationException $e) {
-           
+
             $errors = $e->validator->errors()->all();
-        
+
             $json['success'] = false;
             $json['message'] = $errors;
             $json['code'] = 422; // HTTP 422 Unprocessable Entity
         }
-        
+
 
         echo json_encode($json);
     }
 
     public function show_details($id)
-    { 
+    {
 
         $vaga = Vaga::find($id);
 
@@ -103,7 +103,7 @@ class VagasController extends Controller
         if (!$vaga) {
             return response()->json(['error' => 'Vaga não encontrado'], 404);
         }
-        
+
         return response()->view('vagas.detalhes', ["vaga" => $vaga, "historico" => $historico ?? []]);
     }
 
@@ -122,19 +122,19 @@ class VagasController extends Controller
                 if($estado == '1'){
                     $json['message'] = 'Vaga activada com sucesso.';
 
-                    $descricao = 'Activou a vaga ' .$vaga->seccao. ' | '.$vaga->numero.'.';
+                    $descricao = 'Activou a vaga ' .$vaga->seccao->descricao. ' | '.$vaga->numero.'.';
                     $historico->insert($vaga->getTable(), $vaga->id, $descricao);
 
                 }else if($estado == '2'){
-                    $json['message'] = 'Distrito removido com sucesso.';
-                    
-                    $descricao = 'Removeu a vaga ' .$vaga->seccao. ' | '.$vaga->numero.'.';
+                    $json['message'] = 'Vaga removido com sucesso.';
+
+                    $descricao = 'Removeu a vaga ' .$vaga->seccao->descricao. ' | '.$vaga->numero.'.';
                     $historico->insert($vaga->getTable(), $vaga->id, $descricao);
                 }
                 $json['code'] = 200;
             }else{
                 $json['success'] = false;
-                $json['message'] = 'Ocorreu um erro ao remover o distrito.';
+                $json['message'] = 'Ocorreu um erro ao remover a vaga.';
                 $json['code'] = 500;
             }
         }
@@ -142,10 +142,18 @@ class VagasController extends Controller
     }
 
     public function show($id)
-    { 
+    {
         $vaga = Vaga::where('id', $id)->get();
-    
+
         return view('vagas.detalhes', ["vaga" => $vaga ?? []]);
+
+    }
+
+    public function getOne($id)
+    {
+        $vaga = Vaga::where('id', $id)->get();
+
+        return $vaga;
 
     }
 
@@ -161,15 +169,15 @@ class VagasController extends Controller
             $data = ['nome' => $nome];
             if ($vaga->update($data)) {
                 $json['success'] = true;
-                $json['message'] = 'Vaga ' .$vaga->seccao. ' | '.$vaga->numero. ' actualizada com sucesso.';
+                $json['message'] = 'Vaga ' .$vaga->seccao->descricao. ' | '.$vaga->numero. ' actualizada com sucesso.';
                 $json['code'] = 200;
 
-                $descricao = "Actualizou a vaga " .$vaga->seccao. ' | '.$vaga->numero.".";
+                $descricao = "Actualizou a vaga " .$vaga->seccao->descricao. ' | '.$vaga->numero.".";
                 $historico->insert($vaga->getTable(), $vaga->id, $descricao);
 
             }else{
                 $json['success'] = false;
-                $json['message'] = 'Ocorreu um erro ao editar a vaga '.$vaga->seccao. ' | '.$vaga->numero.'.';
+                $json['message'] = 'Ocorreu um erro ao editar a vaga '.$vaga->seccao->descricao. ' | '.$vaga->numero.'.';
                 $json['code'] = 500;
             }
         }

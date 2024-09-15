@@ -3,6 +3,7 @@ const btnRegistrarProvincia = document.getElementById("registrar_provincia");
 const btnRegistarFuncionario = document.getElementById("registar_funcionario");
 const btnActualizarFuncionario = document.getElementById("actualizar_funcionario");
 const btnDesactivarFuncionario = document.getElementById("desactivar_funcionario");
+const btnRegistrarVaga = document.getElementById("registrar_vaga");
 
 // Adiciona um ouvinte de evento de clique ao botão, chamando a função submitForm
 
@@ -11,7 +12,7 @@ $(document).on("click", "#registrar_provincia", function(e){
 
 })
 $(document).on("click", "#editar_provincia", function(e){
-  submitForm(e, "form_editar_provincia", "provincia/edit")      
+  submitForm(e, "form_editar_provincia", "provincia/edit")
 
 })
 
@@ -20,7 +21,7 @@ $(document).on("click", "#registrar_distrito", function(e){
 
 })
 
-btnRegistrarProvincia?.addEventListener("click", (e) => 
+btnRegistrarProvincia?.addEventListener("click", (e) =>
   submitForm(e, "form_registrar", "provincia")
 );
 
@@ -28,14 +29,19 @@ btnRegistarFuncionario?.addEventListener("click", (e) =>
   submitForm(e, "form_funcionario", "funcionario/create.php")
 );
 
-btnActualizarFuncionario?.addEventListener("click", (e) => 
+btnActualizarFuncionario?.addEventListener("click", (e) =>
    submitForm(e, "form_funcionario_update", "funcionario/update.php")
 );
 
-btnDesactivarFuncionario?.addEventListener('click', (e) => 
+btnDesactivarFuncionario?.addEventListener('click', (e) =>
 { alert('Deseja descativar?') }
 
 );
+
+$(document).on("click", "#registrar_vaga", function(e){
+    submitForm(e, "form_registrar_vaga", "vaga/add")
+
+})
 
 
 /**
@@ -97,7 +103,7 @@ async function submitForm(e, formularioID, endPoint) {
   // Valida o formulário e obtém o número de erros de validação
   errors_validation = validarFormulario(formularioID);
 
- 
+
   // Se não houver erros de validação, prossegue com o envio do formulário
   if (errors_validation == 0) {
     // Chama a função gravarDados para salvar os dados do formulário
@@ -117,7 +123,7 @@ async function submitForm(e, formularioID, endPoint) {
 
       // Exibe uma mensagem de sucesso com base no ID do formulário
       if (formularioID == "form_registrar_provincia") {
-        
+
         if(data.success == true){
           Swal.fire({
             icon: "success",
@@ -126,7 +132,7 @@ async function submitForm(e, formularioID, endPoint) {
             timer: 2000,
           });
 
-            $("#rg-provincia").modal('hide'); 
+            $("#rg-provincia").modal('hide');
               window.location.reload()
         }else{
           Swal.fire({
@@ -139,7 +145,7 @@ async function submitForm(e, formularioID, endPoint) {
 
 
       }else if (formularioID == "form_editar_provincia") {
-        
+
         if(data.success == true){
           Swal.fire({
             icon: "success",
@@ -148,7 +154,7 @@ async function submitForm(e, formularioID, endPoint) {
             timer: 2000,
           });
 
-            $("#edit-provincia").modal('hide'); 
+            $("#edit-provincia").modal('hide');
               window.location.reload()
             // list("");
         }else{
@@ -170,11 +176,11 @@ async function submitForm(e, formularioID, endPoint) {
             timer: 2000,
           }).then((result) => {
             if (result.dismiss) {
-             location.assign('listagem_funcionarios.php');             
+             location.assign('listagem_funcionarios.php');
             }
         });
       }else if (formularioID == "form_registrar_distrito") {
-        
+
         if(data.success == true){
           Swal.fire({
             icon: "success",
@@ -183,7 +189,7 @@ async function submitForm(e, formularioID, endPoint) {
             timer: 2000,
           });
 
-            $("#rg-distrito").modal('hide'); 
+            $("#rg-distrito").modal('hide');
               window.location.reload()
         }else{
           Swal.fire({
@@ -195,11 +201,33 @@ async function submitForm(e, formularioID, endPoint) {
         }
 
 
-      } 
+      }else if (formularioID == "form_registrar_vaga") {
+
+          if(data.success == true){
+              Swal.fire({
+                  icon: "success",
+                  title: `${data.message}`,
+                  showConfirmButton: false,
+                  timer: 2000,
+              });
+
+              $("#rg_vaga").modal('hide');
+              window.location.reload()
+          }else{
+              Swal.fire({
+                  icon: "warning",
+                  title: `${data.message}`,
+                  showConfirmButton: false,
+                  timer: 2000,
+              });
+          }
+
+
+      }
        //Acrescentar outras exibições de mensagens
-      
+
     }
-    
+
   } else {
     // Exibe uma mensagem de erro caso haja campos obrigatórios não preenchidos
     Swal.fire({

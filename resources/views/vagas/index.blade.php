@@ -30,8 +30,8 @@
                                     <i style="color:crimson; font-size:large" title="Estes campos permitem realizar filtros" class="fa fa-info-circle"></i>
                                 </div>
                                 <div class="col-md-12 text-right ">
-                                     <button  title="Adicionar nova vaga" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg-vaga" id="btn_registar"><i class="fa fa-plus"></i> ADICIONAR</button> 
-                                     <button  title="Imprimir um pdf" class="btn btn-info" type="button" id="print"><i class="fa fa-print"></i> PDF</button> 
+                                     <button  title="Adicionar nova vaga" class="btn btn-primary" type="button" data-toggle="modal" data-target="#rg_vaga" id="btn_registar"><i class="fa fa-plus"></i> ADICIONAR</button>
+                                     <button  title="Imprimir um pdf" class="btn btn-info" type="button" id="print"><i class="fa fa-print"></i> PDF</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -62,7 +62,7 @@
                                         <option value="">Todos</option>
                                     </select>
                                 </div>
-                               
+
                                 <div class="col-md-12 mb-3 text-right" style="text-align: right">
                                     <button class="btn btn-secondary  pesquisar">Pesquisar</button>
                                 </div>
@@ -111,8 +111,8 @@
 
                 });
 
-            $("#distrito_li").addClass("nav-item-active")
-            $("#distrito_link").addClass("nav-item-active-text")
+            $("#vaga_li").addClass("nav-item-active")
+            $("#vaga_link").addClass("nav-item-active-text")
 
             $(".pesquisar").click(function() {
                 let limite = $('#limit').val();
@@ -123,18 +123,34 @@
             $(document).on("click", "#btn_edit", function(){
 
                 let id = $(this).val()
-                let nome = $(this).attr('nome');
+                var url = '{{url("vaga_by_id")}}/' + id;
 
-                //Preencher os campos do modal de upadte
-                $("#id").val(id)
-                $("#nome_editar").val(nome)
+
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    data: {
+                        _token: '{{csrf_token()}}',
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response)
+
+
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                }).always(function() {
+                    hideLoader();
+                });
 
 
             });
 
 
             $(document).on("click", "#btn_delete", function(){
-                        var distrito_id = $(this).val();
+                        var vaga_id = $(this).val();
                         var estado = '2'
 
 
@@ -154,7 +170,7 @@
                                 }
                             }).then((result) => {
                             if (result.isConfirmed) {
-                                update_estado(distrito_id, estado);
+                                update_estado(vaga_id, estado);
                             } else if (result.dismiss === Swal.DismissReason.cancel) {
                                 Swal.fire('', 'Operação foi cancelada!', 'warning');
                             }
@@ -176,7 +192,7 @@
                     data: {
                         _token: '{{csrf_token()}}',
                     },
-                    dataType: 'json', 
+                    dataType: 'json',
                     success: function(response) {
                         console.log(response)
 
@@ -194,17 +210,17 @@
 
 
 
-            function update_estado(distrito_id, estado) {
+            function update_estado(vaga_id, estado) {
                 showLoader();
                 $.ajax({
-                    url: '{{url("distrito/delete")}}',
+                    url: '{{url("vaga/delete")}}',
                     method: 'POST',
                     data: {
                         _token: '{{csrf_token()}}',
-                        distrito_id : distrito_id,
+                        vaga_id : vaga_id,
                         estado : estado,
                     },
-                    dataType: 'json', 
+                    dataType: 'json',
                     success: function(response) {
                         if(response.success == true){
                             Swal.fire({
@@ -213,7 +229,7 @@
                                 showConfirmButton: false,
                                 timer: 2000,
                             });
-            
+
                             list(page,limite);
 
 
@@ -295,7 +311,7 @@
                         "numero": numero,
                         "limite": limite,
                     },
-                    dataType: 'html', 
+                    dataType: 'html',
                     success: function(data) {
                         $(".list_vagas").html(data);
                     },
@@ -310,4 +326,5 @@
 
 </script>
 @endsection
+
 

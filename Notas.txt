@@ -5,4 +5,8 @@ Ajustar a paginação usando o laravel;
 Os dados vem desfigurado e não permite navegar para uma outra pagina
 
 * Resolver o problema com a impressão de PDF não do PDF
-extension=mbstring //esta a gerar problemas pois n~ao est'a habilitada
+extension=mbstring //esta a gerar problemas pois n~ao está habilitada
+
+* Problema de impressão de PDF resolvido, quando tento gerar com o script css incluido dá erro, creio que haja, problemas com o CSS.
+
+* Resolver o problema de css no pdf;

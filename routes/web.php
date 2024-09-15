@@ -32,7 +32,7 @@ Route::get('/', function () {
 Route::get('funcionario', [FuncionarioController::class, 'index'])->name('funcionario');
 
 
-Route::prefix('funcionarios')->name('funcionarios.')->group(function () { 
+Route::prefix('funcionarios')->name('funcionarios.')->group(function () {
     Route::get('create', [FuncionarioController::class, 'create'])->name('form_create');
 });
 
@@ -69,6 +69,11 @@ Route::post('distrito/edit', [DistritoController::class, 'edit'])->name('edit');
 Route::get('vaga', [VagasController::class, 'index'])->name('vagas');
 Route::get('vagas', [VagasController::class, 'list'])->name('listar');
 Route::get('vaga/{id}', [VagasController::class, 'show'])->name('show');
+Route::get('vaga_by_id/{id}', [VagasController::class, 'getOne'])->name('vaga_by_id');
 Route::get('vaga_detalhes/{id}', [VagasController::class, 'show_details'])->name('detalhes');
+Route::post('vaga/add', [VagasController::class, 'add'])->name('create');
+Route::post('vaga/delete', [VagasController::class, 'delete'])->name('delete');
+Route::post('vaga/edit', [VagasController::class, 'edit'])->name('edit');
+
 
 

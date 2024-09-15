@@ -11,7 +11,7 @@ class Vaga extends Model
 
     protected $table = 'vaga';
 
-    protected $fillable = ['numero', 'seccao', 'user_id']; // Atributos que podem ser preenchidos
+    protected $fillable = ['numero', 'seccao_id', 'estado','user_id']; // Atributos que podem ser preenchidos
 
     //Relacionamento entre a vaga e seccao
     public function seccao()
