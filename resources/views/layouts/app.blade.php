@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Gestão de estacionamento de veículos || Login</title>
+      <title>Sistema de Gestão de Armazens || Login</title>
       <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
       <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -57,6 +57,19 @@
                         $('#show_hide_password i').addClass( "fa-eye" );
                     }
                 });
+
+                function showPassword(button) {
+                    var inputPassword = $(button).parent().find('input');
+                    if (inputPassword.attr('type') === "password") {
+                        inputPassword.attr('type', 'text');
+                    } else {
+                        inputPassword.attr('type','password');
+                    }
+                }
+
+                $('.show-password').on('click', function(){
+                    showPassword(this);
+                })
             });
         </script>
     </head>

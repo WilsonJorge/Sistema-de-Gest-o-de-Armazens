@@ -21,9 +21,15 @@ class Historico extends Model
         $historico->descricao = $descricao;
         $historico->tabela = $tabela; 
         $historico->row_id = $row_id; 
-        $historico->user_id = 1; 
+        $historico->user_id = auth()->user()->id; 
         $historico->save();
 
+    }
+    
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
     
 

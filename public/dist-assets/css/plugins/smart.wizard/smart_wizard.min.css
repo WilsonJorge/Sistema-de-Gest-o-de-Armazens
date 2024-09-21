@@ -86,14 +86,14 @@
 }
 
 .sw-theme-default > ul.step-anchor > li.clickable > a:hover {
-    color: #802600 !important;
+    color: #4285F4 !important;
     background: transparent !important;
     cursor: pointer;
 }
 
 .sw-theme-default > ul.step-anchor > li > a::after {
     content: "";
-    background: #802600;
+    background: #4285F4;
     height: 2px;
     position: absolute;
     width: 100%;
@@ -108,7 +108,7 @@
 
 .sw-theme-default > ul.step-anchor > li.active > a {
     border: none !important;
-    color: #802600 !important;
+    color: #4285F4 !important;
     background: transparent !important;
     cursor: pointer;
 }

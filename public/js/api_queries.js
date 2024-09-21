@@ -1,48 +1,32 @@
 // Obtém o elemento com o ID "registar_funcionario"
-const btnRegistrarProvincia = document.getElementById("registrar_provincia");
-const btnRegistarFuncionario = document.getElementById("registar_funcionario");
-const btnActualizarFuncionario = document.getElementById("actualizar_funcionario");
-const btnDesactivarFuncionario = document.getElementById("desactivar_funcionario");
-const btnRegistrarVaga = document.getElementById("registrar_vaga");
+const btnRegistrarProduto = document.getElementById("registrar_produto");
+
 
 // Adiciona um ouvinte de evento de clique ao botão, chamando a função submitForm
 
-$(document).on("click", "#registrar_provincia", function(e){
-  submitForm(e, "form_registrar_provincia", "provincia/add")
-
-})
-$(document).on("click", "#editar_provincia", function(e){
-  submitForm(e, "form_editar_provincia", "provincia/edit")
+$(document).on("click", "#registrar_produto", function(e){
+  submitForm(e, "form_registrar_produto", "produto/add")
 
 })
 
-$(document).on("click", "#registrar_distrito", function(e){
-  submitForm(e, "form_registrar_distrito", "distrito/add")
+$(document).on("click", "#registrar_utilizador", function(e){
+  submitForm(e, "form_registrar_utilizador", "utilizador/add")
+
+})
+$(document).on("click", "#editar_produto", function(e){
+  submitForm(e, "form_editar_produto", "produto/edit")
 
 })
 
-btnRegistrarProvincia?.addEventListener("click", (e) =>
-  submitForm(e, "form_registrar", "provincia")
-);
-
-btnRegistarFuncionario?.addEventListener("click", (e) =>
-  submitForm(e, "form_funcionario", "funcionario/create.php")
-);
-
-btnActualizarFuncionario?.addEventListener("click", (e) =>
-   submitForm(e, "form_funcionario_update", "funcionario/update.php")
-);
-
-btnDesactivarFuncionario?.addEventListener('click', (e) =>
-{ alert('Deseja descativar?') }
-
-);
-
-$(document).on("click", "#registrar_vaga", function(e){
-    submitForm(e, "form_registrar_vaga", "vaga/add")
+$(document).on("click", "#editar_funcionario", function(e){
+  submitForm(e, "form_editar_funcionario", "utilizador/edit")
 
 })
 
+$(document).on("click", "#registrar_req_produto", function(e){
+  submitForm(e, "form_requisitar_produto", "produto/requisicao")
+
+})
 
 /**
  * Função que valida um formulário com base no seu ID
@@ -122,96 +106,106 @@ async function submitForm(e, formularioID, endPoint) {
     } else {
 
       // Exibe uma mensagem de sucesso com base no ID do formulário
-      if (formularioID == "form_registrar_provincia") {
+      if (formularioID == "form_registrar_produto") {
 
         if(data.success == true){
           Swal.fire({
             icon: "success",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 8000,
           });
 
-            $("#rg-provincia").modal('hide');
+            $("#rg_produto").modal('hide');
               window.location.reload()
         }else{
           Swal.fire({
             icon: "warning",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 8000,
           });
         }
 
 
-      }else if (formularioID == "form_editar_provincia") {
+      }else if (formularioID == "form_registrar_utilizador") {
 
         if(data.success == true){
           Swal.fire({
             icon: "success",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 8000,
           });
 
-            $("#edit-provincia").modal('hide');
+            $("#rg_utilizador").modal('hide');
               window.location.reload()
-            // list("");
+            
         }else{
           Swal.fire({
             icon: "warning",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 8000,
           });
         }
 
 
-      } else if (formularioID == "form_funcionario_update") {
-        console.log(data)
-          Swal.fire({
-            icon: "success",
-            title: `${data.message}`,
-            showConfirmButton: false,
-            timer: 2000,
-          }).then((result) => {
-            if (result.dismiss) {
-             location.assign('listagem_funcionarios.php');
-            }
-        });
-      }else if (formularioID == "form_registrar_distrito") {
+      } else if (formularioID == "form_editar_produto") {
+        
+          if(data.success == true){
+            Swal.fire({
+              icon: "success",
+              title: `${data.message}`,
+              showConfirmButton: false,
+              timer: 8000,
+            });
+
+              $("#edit_produto").modal('hide');
+                window.location.reload()
+              
+          }else{
+            Swal.fire({
+              icon: "warning",
+              title: `${data.message}`,
+              showConfirmButton: false,
+              timer: 8000,
+            });
+          }
+      }else if (formularioID == "form_editar_funcionario") {
 
         if(data.success == true){
           Swal.fire({
             icon: "success",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 4000,
           });
 
-            $("#rg-distrito").modal('hide');
+            $("#edit_funcionario").modal('hide');
               window.location.reload()
+            
         }else{
           Swal.fire({
             icon: "warning",
             title: `${data.message}`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 4000,
           });
         }
 
 
-      }else if (formularioID == "form_registrar_vaga") {
+      }else if (formularioID == "form_requisitar_produto") {
 
           if(data.success == true){
               Swal.fire({
                   icon: "success",
                   title: `${data.message}`,
                   showConfirmButton: false,
-                  timer: 2000,
+                  timer: 8000,
               });
 
-              $("#rg_vaga").modal('hide');
+              $("#req_produto").modal('hide');
               window.location.reload()
           }else{
               Swal.fire({

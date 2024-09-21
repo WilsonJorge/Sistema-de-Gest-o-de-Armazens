@@ -1,10 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProvinciasController;
-use App\Http\Controllers\DistritoController;
-use App\Http\Controllers\FuncionarioController;
-use App\Http\Controllers\VagasController;
+use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\RequisicoesController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\UtilizadorController;
+
+
+
+
+
+// use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,63 +24,64 @@ use App\Http\Controllers\VagasController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('404', function () {
-    return view('errors.not-found');
-})->name('404');
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('funcionario', [FuncionarioController::class, 'index'])->name('funcionario');
+//Pagina inicial
+Route::get('/home',  [DashboardController::class , 'index'])->name('pagina_inicial');
+
+//Login & Logout
+Route::post('/autenticar', [LoginController::class , 'autenticar'])->name('autenticar');
+Route::get('/', [LoginController::class , 'logout'])->name('logout');
 
 
-Route::prefix('funcionarios')->name('funcionarios.')->group(function () {
-    Route::get('create', [FuncionarioController::class, 'create'])->name('form_create');
-});
+//Produto
+Route::get('produto', [ProdutosController::class, 'index'])->name('produto.list');
+Route::get('produtos', [ProdutosController::class, 'list'])->name('listar');
+Route::get('produto/{id}', [ProdutosController::class, 'show'])->name('show');
+Route::get('produto_detalhes/{id}', [ProdutosController::class, 'show_details'])->name('detalhes');
+Route::post('produto/add', [ProdutosController::class, 'add'])->name('create');
+Route::post('produto/delete', [ProdutosController::class, 'delete'])->name('delete');
+Route::post('produto/edit', [ProdutosController::class, 'edit'])->name('edit');
+Route::post('produto/requisicao', [ProdutosController::class, 'add_requisicao'])->name('requisicao');
 
 
-// Route::get('/provincia', function () {
-//     return view('provincia.listagem_provincia');
-// })->name('provincia');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('pagina_inicial');
-
-
-Route::get('provincia', [ProvinciasController::class, 'index'])->name('list');
-Route::get('provincias', [ProvinciasController::class, 'list'])->name('listar');
-Route::get('provincia/{id}', [ProvinciasController::class, 'show'])->name('show');
-Route::get('provincia_detalhes/{id}', [ProvinciasController::class, 'show_details'])->name('detalhes');
-
-Route::post('provincia/add', [ProvinciasController::class, 'add'])->name('create');
-Route::post('provincia/delete', [ProvinciasController::class, 'delete'])->name('delete');
-Route::post('provincia/edit', [ProvinciasController::class, 'edit'])->name('edit');
+//Utilizador
+Route::get('utilizador', [UtilizadorController::class, 'index'])->name('utilizador.list');
+Route::get('utilizadores', [UtilizadorController::class, 'list'])->name('listar');
+Route::get('utilizador/{id}', [UtilizadorController::class, 'show'])->name('show');
+Route::get('utilizador_detalhes/{id}', [UtilizadorController::class, 'show_details'])->name('utilizador.detalhes');
+Route::post('utilizador/add', [UtilizadorController::class, 'add'])->name('create');
+Route::post('utilizador/delete', [UtilizadorController::class, 'delete'])->name('delete');
+Route::post('utilizador/edit', [UtilizadorController::class, 'edit'])->name('edit');
 
 
-// Distritos
-Route::get('distrito', [DistritoController::class, 'index'])->name('distrito');
-Route::get('distritos', [DistritoController::class, 'list'])->name('listar');
-Route::get('distrito/{id}', [DistritoController::class, 'show'])->name('show');
-Route::get('distrito_detalhes/{id}', [DistritoController::class, 'show_details'])->name('detalhes');
-Route::post('distrito/add', [DistritoController::class, 'add'])->name('create');
-Route::post('distrito/delete', [DistritoController::class, 'delete'])->name('delete');
-Route::post('distrito/edit', [DistritoController::class, 'edit'])->name('edit');
 
-//Vagas
-Route::get('vaga', [VagasController::class, 'index'])->name('vagas');
-Route::get('vagas', [VagasController::class, 'list'])->name('listar');
-Route::get('vaga/{id}', [VagasController::class, 'show'])->name('show');
-Route::get('vaga_by_id/{id}', [VagasController::class, 'getOne'])->name('vaga_by_id');
-Route::get('vaga_detalhes/{id}', [VagasController::class, 'show_details'])->name('detalhes');
-Route::post('vaga/add', [VagasController::class, 'add'])->name('create');
-Route::post('vaga/delete', [VagasController::class, 'delete'])->name('delete');
-Route::post('vaga/edit', [VagasController::class, 'edit'])->name('edit');
+
+//Requisições
+
+Route::get('requisicao', [RequisicoesController::class, 'index'])->name('requisicao.list');
+Route::get('requisicoes', [RequisicoesController::class, 'list'])->name('listar');
+Route::get('requisicao/{id}', [RequisicoesController::class, 'show'])->name('show');
+Route::get('requisicao_detalhes/{id}', [RequisicoesController::class, 'show_details'])->name('requisicao.detalhes');
+Route::post('requisicao/add', [RequisicoesController::class, 'add'])->name('create');
+Route::post('requisicao/delete', [RequisicoesController::class, 'delete'])->name('delete');
+Route::post('requisicao/edit', [RequisicoesController::class, 'edit'])->name('edit');
+
+Route::post('requisicao/movimento/aprovacao', [RequisicoesController::class, 'aprovacao'])->name('requisicao.aprovacao');
+Route::post('requisicao/movimento/reprovacao', [RequisicoesController::class, 'reprovacao'])->name('requisicao.reprovacao');
+
+//Grafico de requisicoes
+Route::get('/dashboard/requisicoes_data', [DashboardController::class, 'getRequisicoesData']);
+
+//Relatorios
+Route::get('relatorio', [DashboardController::class, 'index1'])->name('relatorio.list');
+Route::get('relatorios', [DashboardController::class, 'list'])->name('listar');
+
+
 
 
 
